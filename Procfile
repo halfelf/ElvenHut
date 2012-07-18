@@ -1,1 +1,1 @@
-web: bundle exec ruby route.rb -p 4567
+web: bundle exec ruby route.rb 
