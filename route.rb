@@ -20,6 +20,15 @@ class ElvenHut < Sinatra::Base
         end
     end
 
+    get "/archives/:md" do
+        md_file = File.read(root + view_path + "#{params[:md]}.md")
+        if File.exist? md_file
+            markdown md_file
+        else
+            markdown :404
+        end
+    end
+
     run!
 end
 
