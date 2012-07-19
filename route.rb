@@ -11,6 +11,7 @@ class ElvenHut < Sinatra::Base
     root = File.dirname(__FILE__)
     view_path = root + "/views/"
     public_path = root + "/public/"
+    archive_path = "archive/"
 
     get "/" do 
         if File.exist?(view_path + "my_index.md")
@@ -21,11 +22,11 @@ class ElvenHut < Sinatra::Base
     end
 
     get "/archives/:md" do
-        md_file = File.read(root + view_path + "#{params[:md]}.md")
+        md_file = File.read(root + view_path + archive_path + "#{params[:md]}.md")
         if File.exist? md_file
             markdown md_file
         else
-            markdown :404
+            markdown public_path + "404.md"
         end
     end
 
