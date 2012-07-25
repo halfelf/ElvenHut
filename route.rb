@@ -5,7 +5,7 @@ require "rdiscount"
 require "erb"
 
 
-Sinatra::Base.set :markdown, :layout_engine => :erb, :layout => :single_post
+Sinatra::Base.set :markdown, :layout_engine => :erb, :layout => :background
 
 class ElvenHut < Sinatra::Base
     root = File.dirname(__FILE__)
