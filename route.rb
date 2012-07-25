@@ -3,6 +3,7 @@
 require "sinatra/base"
 require "rdiscount"
 require "erb"
+require_relative "model/article"
 
 
 Sinatra::Base.set :markdown, :layout_engine => :erb, :layout => :background
@@ -21,13 +22,26 @@ class ElvenHut < Sinatra::Base
         end
     end
 
-    get "/archives/:md" do
+    get "archives" do
+        @all = Article.find(:all, :desc => :created_at)
+        @all.each do |one_article|
+            
+        end
+    
+         
+    end
+
+    get "archives/:md" do
         md_file = File.read(root + view_path + archive_path + "#{params[:md]}.md")
         if File.exist? md_file
             markdown md_file
         else
             markdown public_path + "404.md"
         end
+    end
+
+    not_found do
+        markdown :404
     end
 
     run!
