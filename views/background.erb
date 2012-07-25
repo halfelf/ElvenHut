@@ -10,7 +10,22 @@
 		<link rel="canonical" href="http://thispage.url"/>
 		<link rel="stylesheet" type="text/css" href="css/main.css" title="Aurora Palace" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-	</head>
+        
+                    <script language="javascript" type="text/javascript">
+$(document).ready(function() 
+        {
+        var sidebarHeight = $('#sidebar').height();
+        var contentHeight = $('#main').height();
+
+        if (sidebarHeight < contentHeight){
+        $('#sidebar').css('height', contentHeight +'px');
+        } else
+        {
+        $('$main').css('sidebar', sidebarHeight + 'px');
+        }
+        });
+</script>
+        </head>
 	<body class="sandvox has-page-title allow-sidebar no-custom-banner  home-page IR" id="www_asiteof_me" >
 		<div id="page-container">
 			<div id="page">
@@ -36,22 +51,22 @@
 					</div> <!-- sitemenu-container -->
 				</div> <!-- page-top -->
 				<div class="clear below-page-top"></div>
-				<div id="page-content" class="">
-					<div id="sidebar-container">
-	<div id="sidebar">
+                <div id="page-content" class="">
+<div id="sidebar-container">
+    <div id="sidebar">
   		<div id="sidebar-top"></div>
 		<div id="sidebar-content">
 			<h3 class="hidden">Aside<a rel="nofollow" href="#main">[跳过]</a></h3>
 
-	<div class="pagelet titled i1 o">
+	<!--div class="pagelet titled i1 o">
 			
 		<h4 class="title pagelet-title"><span class="in">Latest Tweets</span></h4>
     <div class="pagelet-body">
 
-		<div><!-- sandvox.TwitterElement -->
-			<div id="feed"></div><!-- /sandvox.TwitterElement -->
+		<div>
+			<div id="feed"></div>
 		</div>    </div>
-</div>
+</div--!>
 	<!--div class="pagelet untitled i2 e">
 		
     <div class="pagelet-body">
@@ -66,7 +81,7 @@
                             </script>
           </div>
 </div--!>
-	<div class="pagelet untitled i3 e last-item">
+	<div class="pagelet untitled i1 o last-item">
 		
     <div class="pagelet-body">
 
@@ -139,7 +154,7 @@
 						</div> <!-- main-content -->
 						<div id="main-bottom"></div>
 					</div> <!-- main -->
-                    <div class="padd-clear"></div>
+                    <!--div class="padd-clear"></div--!>
 				</div> <!-- content -->
 				<div class="clear below-content"></div>
 				<div id="page-bottom">
@@ -151,44 +166,13 @@
 			</div> <!-- container -->
 			<div id="extraDiv1"><span></span></div><div id="extraDiv2"><span></span></div><div id="extraDiv3"><span></span></div><div id="extraDiv4"><span></span></div><div id="extraDiv5"><span></span></div><div id="extraDiv6"><span></span></div>
 		</div> <!-- specific body type -->
-<script src="javascripts/twittercallbacktemplate.js"></script><script type="text/javascript">
+<!--script src="javascripts/twittercallbacktemplate.js"></script><script type="text/javascript">
 function twitterCallback_feed(obj)
 {
     twitterCallback_withOptions(obj, 'feed', 'wyvernbai', false, true);
 }
 </script>
 <script type="text/javascript" src="http://api.twitter.com/1/statuses/user_timeline.json/?screen_name=wyvernbai&amp;count=5&amp;callback=twitterCallback_feed&amp;include_rts=true&amp;trim_user=true">
-</script>
-<!-- pagecounter scripts -->
-<script type="text/javascript" src="http://service.karelia.com/ctr/count.js?u=http://www.asiteof.me/"></script>
-<script type="text/javascript">
-    var resourceDir = "_Resources/";
-    var theme = "Helvetica";
-    var countRequest = false;
-    var pcWidth = "11";
-    var pcHeight = "16";
-
-    function showCount(countStr)
-    {
-        var pagelet = document.getElementById("pc");
-        var i, c = countStr.length;
-        for (i = 0; i < c; i++)
-        {
-            var image = document.createElement("img");
-            image.setAttribute("style", "padding:0px; margin:0px;");
-            image.setAttribute("src", resourceDir+"/"+theme+"-"+countStr.charAt(i)+".png");
-            image.setAttribute("width", pcWidth);
-            image.setAttribute("height", pcHeight);
-            image.setAttribute("alt",  + countStr.charAt(i));
-            pagelet.appendChild(image);
-        }
-    }
-    showCount(svxPageCount);
-</script>
-<noscript>
-    <!-- tickle pagecounter by loading a small image -->
-    <p><img src="http://service.karelia.com/ctr/noscript.gif?u=http://www.asiteof.me/" alt="" /></p>
-</noscript>
-<!-- /pagecounter scripts -->
+</script--!>
 	</body>
 </html>
