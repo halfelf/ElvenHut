@@ -1,4 +1,4 @@
-# encoding: utf-8
+# encoding： UTF-8
 
 require "sinatra/base"
 require "rdiscount"
@@ -12,7 +12,7 @@ class ElvenHut < Sinatra::Base
     root = File.dirname(__FILE__)
     view_path = root + "/views/"
     public_path = root + "/public/"
-    archive_path = "archive/"
+    archive_path = "archives/"
 
     get "/" do 
         if File.exist?(view_path + "my_index.md")
@@ -22,26 +22,18 @@ class ElvenHut < Sinatra::Base
         end
     end
 
-    get "archives" do
-        @all = Article.find(:all, :desc => :created_at)
-        @all.each do |one_article|
-            
-        end
-    
-         
+    get "/archives/" do
+        @all = Article.order("created_at DESC")
+        erb :archives_index, :layout => :background
     end
 
-    get "archives/:md" do
-        md_file = File.read(root + view_path + archive_path + "#{params[:md]}.md")
-        if File.exist? md_file
-            markdown md_file
-        else
-            markdown public_path + "404.md"
-        end
+    get "/archives/:md" do
+        md_file = archive_path + "#{params[:md]}"
+        markdown :"#{md_file}"
     end
 
     not_found do
-        markdown :404
+        markdown :not_found
     end
 
     run!

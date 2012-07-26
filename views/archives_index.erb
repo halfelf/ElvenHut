@@ -1,0 +1,7 @@
+<h3>Articles List</h3>
+
+<% for article in @all %>
+    <div>
+        <a href="<%= article.id %>"><%= article.title %></a>
+    </div>
+<% end %>
