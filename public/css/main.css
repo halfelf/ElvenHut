@@ -90,13 +90,6 @@ div.text-navigation div { display:inline; margin:0px 0.5em; }
         and are licensed separately. 
 */
 
-@import url(/* no! */ie6hacks.css);
-
-@font-face {
-	font-family: 'Steelfish';
-	src: url('web-fonts/steelfish_bd-webfont.eot');
-	src: local('?'), url('web-fonts/steelfish_bd-webfont.woff') format('woff'), url('web-fonts/steelfish_bd-webfont.ttf') format('truetype'), url('web-fonts/steelfish_bd-webfont.svg#webfontL7ExYHTv') format('svg');
-}
 h1{font-family: 'Steelfish', impact, Charcoal, sans-serif;}
 h2{ font-weight:normal;}
 
