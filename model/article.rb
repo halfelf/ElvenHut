@@ -13,9 +13,9 @@ ActiveRecord::Base.establish_connection(
 class Article < ActiveRecord::Base
 end
 
-article = Article.new
-article.author = 'halfelf'
-article.title = 'test_title'
-article.created_at = Time.now
-article.updated_at = Time.now
-article.save
+#article = Article.new
+#article.author = 'halfelf'
+#article.title = 'test_title'
+#article.created_at = Time.now
+#article.updated_at = Time.now
+#article.save
