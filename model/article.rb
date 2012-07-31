@@ -11,6 +11,10 @@ ActiveRecord::Base.establish_connection(
 )
 
 class Article < ActiveRecord::Base
+    def full_text
+        # return the whole text for rss feed
+
+    end
 end
 
 #article = Article.new

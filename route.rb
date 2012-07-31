@@ -14,6 +14,10 @@ class ElvenHut < Sinatra::Base
     public_path = root + "/public/"
     archive_path = "archives/"
 
+    # read config from a file later
+    # @site_name = ...
+    # @site_url = ...
+
     get "/" do 
         if File.exist?(view_path + "my_index.md")
             markdown :my_index
@@ -30,6 +34,10 @@ class ElvenHut < Sinatra::Base
     get "/archives/:md" do
         md_file = archive_path + "#{params[:md]}"
         markdown :"#{md_file}"
+    end
+
+    get "/feed" do
+        builder :rss
     end
 
     not_found do
