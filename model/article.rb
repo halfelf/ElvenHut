@@ -1,5 +1,6 @@
 #encoding=utf-8
 require "active_record"
+require "rdiscount"
 
 ActiveRecord::Base.establish_connection(
     :adapter    =>  "mysql2",
@@ -12,8 +13,9 @@ ActiveRecord::Base.establish_connection(
 
 class Article < ActiveRecord::Base
     def full_text
-        # return the whole text for rss feed
-
+        # return the whole text in html format for rss feed
+        @md = RDiscount.new(File.read( "views/archives/#{self.id}.md"  ))
+        @md.to_html
     end
 end
 

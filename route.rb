@@ -37,6 +37,7 @@ class ElvenHut < Sinatra::Base
     end
 
     get "/feed" do
+        @posts = Article.order("created_at DESC")
         builder :rss
     end
 
