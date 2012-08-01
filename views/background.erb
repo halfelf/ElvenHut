@@ -15,13 +15,13 @@
 $(document).ready(function() 
         {
         var sidebarHeight = $('#sidebar').height();
-        var contentHeight = $('#main').height();
+        var contentHeight = $('#main').height() + 15;
 
         if (sidebarHeight < contentHeight){
         $('#sidebar').css('height', contentHeight +'px');
         } else
         {
-        $('$main').css('sidebar', sidebarHeight + 'px');
+        $('$main').css('height', sidebarHeight + 'px');
         }
         });
 </script>
@@ -32,7 +32,7 @@ $(document).ready(function()
 				<div id="page-top" class="has-logo has-title has-tagline">
 					<div id="title">
 						<span id="logo-container"><img id="logo" width="156" height="108" src="/_Media/logo.png" alt="" /></span>
-						<h1 class="title"><span class="in">ElvenHut</span></h1>
+                        <h1 class="title"><span class="in"><a href="/">ElvenHut</a></span></h1>
 						<p id="tagline"><span class="in">A blog engine for personal using</span></p>
 					</div><!-- title -->
 					<div id="sitemenu-container">
@@ -94,9 +94,9 @@ $(document).ready(function()
 	</div> <!-- sidebar -->
 </div> <!-- sidebar-container -->
 					<div id="main">
-						<div id="main-top"></div>
+						<!--div id="main-top"></div>
                             						<div id="main-content">
-                                                        <h2 class="title"><span class="in">Homepage</span></h2>
+                                                      <h2 class="title"><span class="in">Homepage</span></h2--!>
 							<div class="article">
 								<div class="article-content">
 	<div class="RichTextElement">

@@ -573,6 +573,10 @@ dd {
 	 font-size:18px;
 	 
 }
+#main h1 {
+     color: #222;
+     font-weight: 30px;
+}
 
 
 /* remove excessive spacing if the heading is used in a collection index */
@@ -996,7 +1000,7 @@ body {
 	background: rgb(0, 0, 0) url(grey/bg-strip.png) repeat-x top;/*FOR IE*/
 	background:url(grey/bkgd.png) no-repeat top center, rgb(0, 0, 0) url(grey/bg-strip.png) repeat-x top;
 }
-h1, h1 a {
+#title h1, h1 a {
     color:#e7ecf0 !important;
 }
 #title p, #page-bottom a {  
