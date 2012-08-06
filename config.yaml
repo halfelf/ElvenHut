@@ -1,0 +1,9 @@
+blog:
+    title: ElvenHut | A blog engine for personal using
+    url: www.example.com
+    sitename: ElvenHut
+    description: A blog engine for personal using
+    username: admin
+    passwd: admin
+    cookie_key: elvenhut_admin
+    cookie_value: some randome information for elvenhub_admin

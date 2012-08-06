@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-Hans" lang="zh-Hans">
 	<head>
 		<meta charset="UTF-8" />
-		<title>ElvenHut Engine</title>
+        <title><%= Blog.title %></title>
 		<meta name="robots" content="all" />
 		<meta name="generator" content="Sandvox 2.5.3" />
 		<meta name="viewport" content="width=772" />
@@ -21,7 +21,7 @@ $(document).ready(function()
         $('#sidebar').css('height', contentHeight +'px');
         } else
         {
-        $('$main').css('height', sidebarHeight + 'px');
+        $('#main').css('height', sidebarHeight + 'px');
         }
         });
 </script>
@@ -32,8 +32,8 @@ $(document).ready(function()
 				<div id="page-top" class="has-logo has-title has-tagline">
 					<div id="title">
 						<span id="logo-container"><img id="logo" width="156" height="108" src="/_Media/logo.png" alt="" /></span>
-                        <h1 class="title"><span class="in"><a href="/">ElvenHut</a></span></h1>
-						<p id="tagline"><span class="in">A blog engine for personal using</span></p>
+                        <h1 class="title"><span class="in"><a href="/"><%= Blog.site_name %></a></span></h1>
+                        <p id="tagline"><span class="in"><%= Blog.site_description%></span></p>
 					</div><!-- title -->
 					<div id="sitemenu-container">
 						<div id="sitemenu">
@@ -79,7 +79,7 @@ $(document).ready(function()
                             </script>
           </div>
 </div--!>
-	<div class="pagelet untitled i1 o last-item">
+	<div class="pagelet untitled i1 o">
 		
     <div class="pagelet-body">
 
@@ -87,6 +87,18 @@ $(document).ready(function()
 			<div class="rssBadge">
                 <a href="id/index.xml" title="id/index.xml" class="imageLink"><img alt="RSS" width="25" src="/_Resources/black-feed-icon.gif" class="smallRSSBadgeIcon smallRSSBadgeIconLeft" /></a><a href="id/index.xml" title="id/index.xml">Subscribe via RSS</a>
 			</div><!-- /sandvox.RSSBadgeElement -->
+		</div>    </div>
+</div>
+	<div class="pagelet untitled i2 e">
+		
+    <div class="pagelet-body">
+
+		<div>
+            <div class="adminBadge">
+                <% if admin? then%>
+                    <%= "Welcome back! " + Blog.admin_name%>
+                <% end %>
+			</div>
 		</div>    </div>
 </div>
 		</div> <!-- sidebar-content -->
@@ -160,13 +172,13 @@ $(document).ready(function()
 			</div> <!-- container -->
 			<div id="extraDiv1"><span></span></div><div id="extraDiv2"><span></span></div><div id="extraDiv3"><span></span></div><div id="extraDiv4"><span></span></div><div id="extraDiv5"><span></span></div><div id="extraDiv6"><span></span></div>
 		</div> <!-- specific body type -->
-<!--script src="javascripts/twittercallbacktemplate.js"></script><script type="text/javascript">
+<script src="javascripts/twittercallbacktemplate.js"></script><script type="text/javascript">
 function twitterCallback_feed(obj)
 {
     twitterCallback_withOptions(obj, 'feed', 'wyvernbai', false, true);
 }
 </script>
 <script type="text/javascript" src="http://api.twitter.com/1/statuses/user_timeline.json/?screen_name=wyvernbai&amp;count=5&amp;callback=twitterCallback_feed&amp;include_rts=true&amp;trim_user=true">
-</script--!>
+</script>
 	</body>
 </html>

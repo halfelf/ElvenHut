@@ -5,7 +5,6 @@ require "rdiscount"
 require "erb"
 require_relative "model/article"
 
-
 Sinatra::Base.set :markdown, :layout_engine => :erb, :layout => :background
 
 class ElvenHut < Sinatra::Base
@@ -14,9 +13,32 @@ class ElvenHut < Sinatra::Base
     public_path = root + "/public/"
     archive_path = "archives/"
 
-    # read config from a file later
-    # @site_name = ...
-    # @site_url = ...
+    layout 'background'
+
+    configure do
+        require 'yaml'
+        require 'ostruct'
+
+        config = YAML.load_file root + "/config.yaml"
+        Blog = OpenStruct.new(
+            :title => config["blog"]["title"],
+            :site_name => config["blog"]["sitename"],
+            :site_url => config["blog"]["url"],
+            :site_description => config["blog"]["description"],
+            :admin_name => config["blog"]["username"],
+            :admin_passwd => config["blog"]["passwd"],
+            :admin_cookie_key => config["blog"]["cookie_key"],
+            :admin_cookie_value => config["blog"]["cookie_value"]
+        )
+    end
+
+    def admin?
+        request.cookies[Blog.admin_cookie_key] == Blog.admin_cookie_value
+    end
+
+    def auth
+        markdown not_auth unless admin?
+    end
 
     get "/" do 
         if File.exist?(view_path + "my_index.md")
@@ -39,6 +61,19 @@ class ElvenHut < Sinatra::Base
     get "/feed" do
         @posts = Article.order("created_at DESC")
         builder :rss
+    end
+
+    get "/login" do
+        erb :login, :layout=> :background
+    end
+
+    post "/login" do
+        if params[:username] == Blog.admin_name && params[:password] == Blog.admin_passwd then
+            response.set_cookie(Blog.admin_cookie_key, Blog.admin_cookie_value)
+            redirect '/'
+        else
+            markdown :not_auth
+        end
     end
 
     not_found do
