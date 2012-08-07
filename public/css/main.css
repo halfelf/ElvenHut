@@ -323,6 +323,7 @@ li.currentParent a:hover{
     width: 725px;
     margin: 0 0 0 17px;
     */
+    overflow: hidden;
     clear: right !important;
 /*	float:left;*/
 	border-top:none;
@@ -478,11 +479,13 @@ body.no-sidebar #main {
 
 /* Most other pages have sidebars */
 body.allow-sidebar #main {
-    margin-right: 320px;
+/*    margin-right: 320px*/
+    width: 73%;
 /*    float: left;*/
 /*    width: 475px;*/
     font-size: 1em;
 }
+
 /* IE Hack */
 
 /* Hides from IE5-mac \*/
@@ -592,6 +595,20 @@ li h3 {
 #page-content a:hover, #page-content a:focus, #page-content a:active, #page-bottom a:hover, #page-bottom a:focus, #page-bottom a:active {
     border: 1px solid rgb(0, 0,0);
     color: #000;
+}
+#page-content section {
+    width: 73%;
+    float: left;
+}
+#page-content aside {
+    width: 27%;
+    float: right;
+    position: relative;
+
+}
+#page-content section, aside {
+    padding-bottom: 2000px;
+    margin-bottom: -2000px;
 }
 
 .imageLink {

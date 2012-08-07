@@ -4,14 +4,11 @@
 		<meta charset="UTF-8" />
         <title><%= Blog.title %></title>
 		<meta name="robots" content="all" />
-		<meta name="generator" content="Sandvox 2.5.3" />
-		<meta name="viewport" content="width=772" />
         <meta http-equiv="X-UA-Compatible" content="IE=100" />
-		<link rel="canonical" href="http://thispage.url"/>
 		<link rel="stylesheet" type="text/css" href="/css/main.css" title="Aurora Palace" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
         
-                    <script language="javascript" type="text/javascript">
+                    <!--script language="javascript" type="text/javascript">
 $(document).ready(function() 
         {
         var sidebarHeight = $('#sidebar').height();
@@ -24,7 +21,7 @@ $(document).ready(function()
         $('#main').css('height', sidebarHeight + 'px');
         }
         });
-</script>
+</script--!>
         </head>
 	<body class="sandvox has-page-title allow-sidebar no-custom-banner  home-page IR" id="www_asiteof_me" >
 		<div id="page-container">
@@ -51,60 +48,7 @@ $(document).ready(function()
 				</div> <!-- page-top -->
 				<div class="clear below-page-top"></div>
                 <div id="page-content" class="">
-<div id="sidebar-container">
-    <div id="sidebar">
-  		<div id="sidebar-top"></div>
-		<div id="sidebar-content">
-
-	<!--div class="pagelet titled i1 o">
-			
-		<h4 class="title pagelet-title"><span class="in">Latest Tweets</span></h4>
-    <div class="pagelet-body">
-
-		<div>
-			<div id="feed"></div>
-		</div>    </div>
-</div--!>
-	<!--div class="pagelet untitled i2 e">
-		
-    <div class="pagelet-body">
-        <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="200" margin-right="0"></div>
-
-        <script type="text/javascript">
-              (function() {
-                      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                          po.src = 'https://apis.google.com/js/plusone.js';
-                              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                                })();
-                            </script>
-          </div>
-</div--!>
-	<div class="pagelet untitled i1 o">
-		
-    <div class="pagelet-body">
-
-		<div><!-- sandvox.RSSBadgeElement -->
-			<div class="rssBadge">
-                <a href="id/index.xml" title="id/index.xml" class="imageLink"><img alt="RSS" width="25" src="/_Resources/black-feed-icon.gif" class="smallRSSBadgeIcon smallRSSBadgeIconLeft" /></a><a href="id/index.xml" title="id/index.xml">Subscribe via RSS</a>
-			</div><!-- /sandvox.RSSBadgeElement -->
-		</div>    </div>
-</div>
-	<div class="pagelet untitled i2 e">
-		
-    <div class="pagelet-body">
-
-		<div>
-            <div class="adminBadge">
-                <% if admin? then%>
-                    <%= "Welcome back! " + Blog.admin_name%>
-                <% end %>
-			</div>
-		</div>    </div>
-</div>
-		</div> <!-- sidebar-content -->
-		<div id="sidebar-bottom"></div>	
-	</div> <!-- sidebar -->
-</div> <!-- sidebar-container -->
+                    <section>
 					<div id="main">
 						<!--div id="main-top"></div>
                             						<div id="main-content">
@@ -159,7 +103,62 @@ $(document).ready(function()
 								</div> <!-- /article-info -->
 							</div> <!-- /article -->
 						</div> <!-- main-content -->
-						<div id="main-bottom"></div>
+						<!--div id="main-bottom"></div--!>
+                        </section>
+                        <aside>
+    <div id="sidebar">
+  		<div id="sidebar-top"></div>
+		<div id="sidebar-content">
+
+	<!--div class="pagelet titled i1 o">
+			
+		<h4 class="title pagelet-title"><span class="in">Latest Tweets</span></h4>
+    <div class="pagelet-body">
+
+		<div>
+			<div id="feed"></div>
+		</div>    </div>
+</div--!>
+	<!--div class="pagelet untitled i2 e">
+		
+    <div class="pagelet-body">
+        <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="200" margin-right="0"></div>
+
+        <script type="text/javascript">
+              (function() {
+                      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                          po.src = 'https://apis.google.com/js/plusone.js';
+                              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                })();
+                            </script>
+          </div>
+</div--!>
+	<div class="pagelet untitled i1 o">
+		
+    <div class="pagelet-body">
+
+		<div><!-- sandvox.RSSBadgeElement -->
+			<div class="rssBadge">
+                <a href="id/index.xml" title="id/index.xml" class="imageLink"><img alt="RSS" width="25" src="/_Resources/black-feed-icon.gif" class="smallRSSBadgeIcon smallRSSBadgeIconLeft" /></a><a href="id/index.xml" title="id/index.xml">Subscribe via RSS</a>
+			</div><!-- /sandvox.RSSBadgeElement -->
+		</div>    </div>
+</div>
+	<div class="pagelet untitled i2 e">
+		
+    <div class="pagelet-body">
+
+		<div>
+            <div class="adminBadge">
+                <% if admin? then%>
+                    <%= "Welcome back! " + Blog.admin_name%>
+                <% end %>
+			</div>
+		</div>    </div>
+</div>
+		</div> <!-- sidebar-content -->
+		<div id="sidebar-bottom"></div>	
+	</div> <!-- sidebar -->
+</aside>
 					</div> <!-- main -->
                     <!--div class="padd-clear"></div--!>
 				</div> <!-- content -->
