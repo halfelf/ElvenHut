@@ -2,26 +2,24 @@
 require "active_record"
 require "rdiscount"
 
-ActiveRecord::Base.establish_connection(
-    :adapter    =>  "mysql2",
-    :encode     =>  "utf8",
-    :host       =>  "localhost",
-    :username   =>  "root",
-    :password   =>  "123",
-    :database   =>  "elvenhut"
-)
+class Article < Sequel::Model
+    plugin :schema
+    unless table_exists?
+        set_schema do
+            primary_key :id
+            text :title
+            text :content
+            text :url
+            text :tags
+            text :author
+            timestamp :update_at
+        end
+        create_table
+    end
 
-class Article < ActiveRecord::Base
-    def full_text
-        # return the whole text in html format for rss feed
-        @md = RDiscount.new(File.read( "views/archives/#{self.id}.md"  ))
-        @md.to_html
+    def url
+        puts url
+        "article/#{url}"
+        puts "right"
     end
 end
-
-article = Article.new
-article.author = 'halfelf'
-article.title = 'test_title'
-article.created_at = Time.now
-article.updated_at = Time.now
-article.save

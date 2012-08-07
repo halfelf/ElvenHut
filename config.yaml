@@ -1,3 +1,9 @@
+database:
+    adapter: mysql
+    user: root
+    host: localhost
+    passwd: 123
+    database: elvenhut_database
 blog:
     title: ElvenHut | A blog engine for personal using
     url: www.example.com

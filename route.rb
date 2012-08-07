@@ -3,7 +3,7 @@
 require "sinatra/base"
 require "rdiscount"
 require "erb"
-require_relative "model/article"
+require "sequel"
 
 Sinatra::Base.set :markdown, :layout_engine => :erb, :layout => :background
 
@@ -11,7 +11,7 @@ class ElvenHut < Sinatra::Base
     root = File.dirname(__FILE__)
     view_path = root + "/views/"
     public_path = root + "/public/"
-    archive_path = "archives/"
+#    archive_path = "archives/"
 
     layout 'background'
 
@@ -20,6 +20,15 @@ class ElvenHut < Sinatra::Base
         require 'ostruct'
 
         config = YAML.load_file root + "/config.yaml"
+        Database = OpenStruct.new(
+            :adapter => config["database"]["adapter"],
+            :user => config["database"]["user"],
+            :host => config["database"]["host"],
+            :passwd => config["database"]["passwd"].to_s,
+            :database => config["database"]["database"]
+        )
+        Sequel.connect(:adapter => Database.adapter, :user => Database.user, :host => Database.host, :database => Database.database, :password => Database.passwd);
+
         Blog = OpenStruct.new(
             :title => config["blog"]["title"],
             :site_name => config["blog"]["sitename"],
@@ -32,12 +41,14 @@ class ElvenHut < Sinatra::Base
         )
     end
 
+    require_relative "model/article"
+
     def admin?
         request.cookies[Blog.admin_cookie_key] == Blog.admin_cookie_value
     end
 
     def auth
-        markdown not_auth unless admin?
+        markdown :not_auth unless admin?
     end
 
     get "/" do 
@@ -53,9 +64,28 @@ class ElvenHut < Sinatra::Base
         erb :archives_index, :layout => :background
     end
 
-    get "/archives/:md" do
-        md_file = archive_path + "#{params[:md]}"
-        markdown :"#{md_file}"
+    get "/archives/:id" do
+        @article = Article.filter(:id => params[:id]).first
+        not_found unless @article
+        erb :post, :layout=>:background
+    end
+
+    get "/new_post" do
+        auth
+        erb :new_post, :layout => :background
+    end
+
+    post "/new_post" do
+        auth
+        article = Article.new :title => params[:title], :tags => params[:tags], :content => params[:content], :created_at => Time.now, :update_at => Time.new, :url => params[:url]
+        article.save
+        redirect "/article/#{params[:url]}"
+    end
+
+    get "/article/:url" do
+        @article = Article.filter(:url => params[:url]).first
+        not_found unless @article
+        erb :post, :layout=>:background
     end
 
     get "/feed" do
