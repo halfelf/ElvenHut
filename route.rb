@@ -41,9 +41,15 @@ class ElvenHut < Sinatra::Base
     )
   end
 
+  use Rack::Session::Pool, :expire_after => 2592000
   require_relative "model/article"
 
+  before '/new_post/*' do
+    auth
+  end
+
   def admin?
+    #  use session intead !!! see line 44
     request.cookies[Blog.admin_cookie_key] == Blog.admin_cookie_value
   end
 
@@ -71,12 +77,10 @@ class ElvenHut < Sinatra::Base
   end
 
   get "/new_post" do
-    auth
     erb :new_post, :layout => :background
   end
 
   post "/new_post" do
-    auth
     article = Article.new :title => params[:title], :tags => params[:tags], :content => params[:content], :created_at => Time.now, :update_at => Time.new, :url => params[:url]
     article.save
     redirect "/article/#{params[:url]}"
