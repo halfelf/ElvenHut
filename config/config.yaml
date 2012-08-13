@@ -1,5 +1,5 @@
 database:
-    adapter: mysql
+    adapter: mysql2
     user: root
     host: localhost
     passwd: 123
