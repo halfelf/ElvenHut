@@ -49,7 +49,7 @@ class ElvenHut < Sinatra::Base
   end
 
   def admin?
-    #  use session intead !!! see line 44
+    #  use session instead !!! see line 44
     request.cookies[Blog.admin_cookie_key] == Blog.admin_cookie_value
   end
 
