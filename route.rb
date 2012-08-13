@@ -19,7 +19,7 @@ class ElvenHut < Sinatra::Base
     require 'yaml'
     require 'ostruct'
 
-    config = YAML.load_file root + "/config.yaml"
+    config = YAML.load_file root + "/config/config.yaml"
     Database = OpenStruct.new(
       :adapter => config["database"]["adapter"],
       :user => config["database"]["user"],
