@@ -1,5 +1,4 @@
 <h2><%= @article.title %></h2>
 <p>update at: <%= @article.update_at%></p>
-<p>tags: <%= @article.tags %></p>
 <p>author: <%= @article.author%></p>
-<p>content: <%= @article.content%></p>
+<p>content: <%= markdown(File.read(@contentfilepath))%></p>

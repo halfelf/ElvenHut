@@ -5,13 +5,16 @@ require "rdiscount"
 require "erb"
 require "sequel"
 
-Sinatra::Base.set :markdown, :layout_engine => :erb, :layout => :background
-
+Sinatra::Base.set :markdown, :layout_engine => :erb
 class ElvenHut < Sinatra::Base
-  root = File.dirname(__FILE__)
+=begin
+  set :root, File.dirname(__FILE__)
+  set :public_folder, Proc.new {File.join(root, "public")}
+  set :views, Proc.new {File.join(root, "views")}
+=end
   view_path = root + "/views/"
   public_path = root + "/public/"
-  #    archive_path = "archives/"
+  archive_path = root + "/views/archives/"
 
   layout 'background'
 
@@ -54,14 +57,14 @@ class ElvenHut < Sinatra::Base
   end
 
   def auth
-    markdown :not_auth unless admin?
+    markdown :not_auth, :layout => :background unless admin?
   end
 
   get "/" do 
     if File.exist?(view_path + "my_index.md")
-      markdown :my_index
+      markdown :my_index, :layout => :background
     else
-      markdown :index
+      markdown :index, :layout => :background
     end
   end
 
@@ -73,6 +76,7 @@ class ElvenHut < Sinatra::Base
   get "/archives/:id" do
     @article = Article.filter(:id => params[:id]).first
     not_found unless @article
+    @contentfilepath = "#{archive_path + @article.id.to_s}.md"
     erb :post, :layout=>:background
   end
 
@@ -81,16 +85,22 @@ class ElvenHut < Sinatra::Base
   end
 
   post "/new_post" do
-    article = Article.new :title => params[:title], :tags => params[:tags], :content => params[:content], :created_at => Time.now, :update_at => Time.new, :url => params[:url]
+    article = Article.new :title => params[:title], :author => params[:author], :created_at => Time.now, :update_at => Time.new
     article.save
-    redirect "/article/#{params[:url]}"
+    p article.id
+    writeStream = File.new("#{archive_path + article.id.to_s}.md", 'w')
+    writeStream.write params[:content]
+    writeStream.close
+    redirect "/archives/#{article.id}"
   end
 
+=begin
   get "/article/:url" do
     @article = Article.filter(:url => params[:url]).first
     not_found unless @article
     erb :post, :layout=>:background
   end
+=end
 
   get "/feed" do
     @posts = Article.order("created_at DESC")
@@ -106,12 +116,12 @@ class ElvenHut < Sinatra::Base
       response.set_cookie(Blog.admin_cookie_key, Blog.admin_cookie_value)
       redirect '/'
     else
-      markdown :not_auth
+      markdown :not_auth, :layout => :background
     end
   end
 
   not_found do
-    markdown :not_found
+    markdown File.read("#{public_path}not_found.md"), :layout => :background
   end
 
   run!
