@@ -1,5 +1,5 @@
 #encoding=utf-8
-require "active_record"
+require "sequel"
 require "rdiscount"
 
 class Article < Sequel::Model
