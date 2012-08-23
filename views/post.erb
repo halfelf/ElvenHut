@@ -1,4 +1,9 @@
-<h2><%= @article.title %></h2>
-<p>update at: <%= @article.update_at%></p>
-<p>author: <%= @article.author%></p>
-<p>content: <%= markdown(File.read(@contentfilepath))%></p>
+<post>
+	<header>
+		<h2>
+			<a href="<%= @article.id %>"><%= @article.title %></a>
+		</h2>
+		<h4><%= parse_date @article.created_at %></h4>
+	</header>
+	<%= markdown(File.read(@contentfilepath))%>
+</post>
