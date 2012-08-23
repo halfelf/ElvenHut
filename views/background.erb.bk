@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-Hans" lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= Blog.title %></title>
+    <meta name="robots" content="all" />
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" title="Aurora Palace" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+    <script language="javascript" type="text/javascript">
+      $(document).ready(function() {
+          var sidebarHeight = $('#sidebar').height();
+          var contentHeight = $('#main').height() + 15;
+
+          if (sidebarHeight < contentHeight){
+          $('#sidebar').css('height', contentHeight +'px');
+          } else {
+          $('#main').css('height', sidebarHeight + 'px');
+          }
+          });
+</script>
+    </head>
+    <body class="sandvox has-page-title allow-sidebar no-custom-banner  home-page IR" id="www_asiteof_me" >
+      <div id="page-container">
+        <div id="page">
+          <div id="page-top" class="has-logo has-title has-tagline">
+            <div id="title">
+              <span id="logo-container"><img id="logo" width="156" height="108" src="/_Media/logo.png" alt="" /></span>
+              <h1 class="title"><span class="in"><a href="/"><%= Blog.site_name %></a></span></h1>
+              <p id="tagline"><span class="in"><%= Blog.site_description%></span></p>
+            </div><!-- title -->
+            <div id="sitemenu-container">
+              <div id="sitemenu">
+                <div id="sitemenu-content">
+                  <ul>
+                    <li class="i1 o currentPage"><span class="in">Home</span></li>
+                    <li class="i2 e"><a href="blog/" title="Blog"><span class="in">Blog</span></a></li>
+                    <li class="i3 o"><a href="project/" title="Project"><span class="in">Project</span></a></li>
+                    <li class="i4 e"><a href="picture/" title="Picture"><span class="in">Picture</span></a></li>
+                    <li class="i5 o last"><a href="video/" title="Video"><span class="in">Video</span></a></li>
+                  </ul>
+                </div> <!-- /sitemenu-content -->
+              </div> <!-- /sitemenu -->
+            </div> <!-- sitemenu-container -->
+          </div> <!-- page-top -->
+          <div class="clear below-page-top"></div>
+          <div id="page-content" class="">
+            <div id="sidebar-container">
+              <div id="sidebar">
+                <div id="sidebar-top"></div>
+                <div id="sidebar-content">
+
+                  <!--div class="pagelet titled i1 o">
+
+                  <h4 class="title pagelet-title"><span class="in">Latest Tweets</span></h4>
+                  <div class="pagelet-body">
+
+                    <div>
+                      <div id="feed"></div>
+                  </div>    </div>
+                  </div--!>
+                  <!--div class="pagelet untitled i2 e">
+
+                  <div class="pagelet-body">
+                    <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="200" margin-right="0"></div>
+
+                    <script type="text/javascript">
+                      (function() {
+                       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                       po.src = 'https://apis.google.com/js/plusone.js';
+                       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                       })();
+</script>
+          </div>
+          </div--!>
+          <div class="pagelet untitled i1 o">
+            <div class="pagelet-body">
+              <div>
+                <div class="rssBadge">
+                  <a href="id/index.xml" title="id/index.xml" class="imageLink"><img alt="RSS" width="25" src="/_Resources/black-feed-icon.gif" class="smallRSSBadgeIcon smallRSSBadgeIconLeft" /></a><a href="id/index.xml" title="id/index.xml">Subscribe via RSS</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pagelet untitled i2 e">
+            <div class="pagelet-body">
+              <div>
+                <div class="adminBadge">
+                  <% if admin? then%>
+                    <%= "Welcome back! " + Blog.admin_name%>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- sidebar-content -->
+        <div id="sidebar-bottom"></div>
+      </div> <!-- sidebar -->
+    </div> <!-- sidebar-container -->
+    <div id="main">
+      <div class="article">
+        <div class="article-content">
+          <div class="RichTextElement">
+            <div>
+              <%= yield %>
+              <!--
+              <div class="first graphic-container wide center">
+                <div style="" class="photogrid-index graphic">
+                  <div class="figure-content">
+                    <div class="gridItem i1 o">
+                      <a href="blog/" title="Blog" class="imageLink">
+                        <div style="width:128px; height:128px;"></div>
+                      </a>
+
+                      <h3><a href="blog/" title="Blog"><span class="in">Blog</span></a></h3>
+
+                    </div>
+                    <div class="gridItem i2 e">
+                      <a href="id/" title="photo" class="imageLink">
+                        <div style="width:128px; height:128px;"></div>
+                      </a>
+
+
+                    </div>
+                    <div class="gridItem i3 o">
+                      <a href="id.html" title="sitemap" class="imageLink">
+                        <div style="width:128px; height:128px;"></div>
+                      </a>
+
+
+                    </div>
+                    <div class="gridItem i4 e last-item">
+                      <a href="id-2.html" title="noname" class="imageLink">
+                        <div style="width:128px; height:128px;"></div>
+                      </a>
+
+
+                    </div>
+                    <div class="photogrid-index-bottom"></div>
+                  </div>
+                </div>
+              </div><p><br /></p>
+              --!>
+            </div>
+          </div>
+        </div> <!-- /article-content -->
+        <div class="article-info">
+        </div> <!-- /article-info -->
+      </div> <!-- /article -->
+    </div> <!-- main-content -->
+    <div id="main-bottom"></div>
+  </div> <!-- main -->
+  <!--div class="padd-clear"></div--!>
+</div> <!-- content -->
+<div class="clear below-content"></div>
+<div id="page-bottom">
+  <div id="page-bottom-contents">
+    <div> ElvenHut 2012</div>
+  </div>
+</div> <!-- page-bottom -->
+    </div> <!-- container -->
+    <div id="extraDiv1"><span></span></div><div id="extraDiv2"><span></span></div><div id="extraDiv3"><span></span></div><div id="extraDiv4"><span></span></div><div id="extraDiv5"><span></span></div><div id="extraDiv6"><span></span></div>
+  </div> <!-- specific body type -->
+  <!--script src="javascripts/twittercallbacktemplate.js"></script><script type="text/javascript">
+  function twitterCallback_feed(obj)
+{
+  twitterCallback_withOptions(obj, 'feed', 'wyvernbai', false, true);
+}
+</script>
+<script type="text/javascript" src="http://api.twitter.com/1/statuses/user_timeline.json/?screen_name=wyvernbai&amp;count=5&amp;callback=twitterCallback_feed&amp;include_rts=true&amp;trim_user=true">
+  </script--!>
+</body>
+</html>

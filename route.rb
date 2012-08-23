@@ -15,7 +15,7 @@ class ElvenHut < Sinatra::Base
   view_path = root + "/views/"
   public_path = root + "/public/"
   archive_path = root + "/views/archives/"
-
+  
   layout 'background'
 
   configure do
@@ -44,6 +44,20 @@ class ElvenHut < Sinatra::Base
     )
   end
 
+  helpers do
+  	def current_folder?(path="")
+  		'class="active"' if request.path_info =~ Regexp.new(path)
+    end
+  	
+  	def current_page?(path="")
+  		'class="active"' if request.path_info == path
+  	end
+  	
+  	def parse_date origin_date
+  		origin_date.strftime("%b %d, %Y")
+  	end
+  end
+  
   use Rack::Session::Pool, :expire_after => 2592000
   require_relative "model/article"
 
@@ -70,6 +84,7 @@ class ElvenHut < Sinatra::Base
 
   get "/archives/" do
     @all = Article.order("created_at DESC")
+    @archive_path = archive_path
     erb :archives_index, :layout => :background
   end
 

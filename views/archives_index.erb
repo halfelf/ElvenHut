@@ -1,7 +1,80 @@
+<article>
+	<header>
+		<h2>
+			<a href="/1">The First Article's Title: Hello ElvenHut</a>
+		</h2>
+	</header>
+	<aside>
+		<ul>
+			<li>
+				<h4>Apr 2, 2012</h4>
+			</li>
+			<li>
+				<a href="/tag1" title="View all posts in tag1">tag1</a>
+				<a href="/tag2" title="View all posts in tag2">, tag2</a>
+			</li>
+			<li>
+				<a href="/thispost/comments">0 comments</a>
+			</li>
+		</ul>
+	</aside>
+	<p>Over the weekend I made some subtle design tweaks here, and some not-so-subtle type refreshing. I’m honored to be beta testing H&FJ’s forthcoming webfonts offering. You’ll now see Whitney and Tungsten being used throughout the site. I’m amazed at the level of detail H&FJ have been putting into the screen versions of their famous fonts. Whitney ScreenSmart, in particular, looks downright glorious on a Retina display. You might’ve seen Whitney in use over at Kottke.org as well.
+	</p>
+</article>
+<article>
+	<header>
+		<h2>
+			<a href="/1">The First Article's Title: Hello ElvenHut</a>
+		</h2>
+	</header>
+	<aside>
+		<ul>
+			<li>
+				<h4>Apr 2, 2012</h4>
+			</li>
+			<li>
+				<a href="/tag1" title="View all posts in tag1">tag1</a>
+				<a href="/tag2" title="View all posts in tag2">, tag2</a>
+			</li>
+			<li>
+				<a href="/thispost/comments">0 comments</a>
+			</li>
+		</ul>
+	</aside>
+	<p>
+		hello
+	</p>
+</article>
+
+<% for article in @all %>
+<article>
+	<header>
+		<h2>
+			<a href="<%= article.id %>"><%= article.title %></a>
+		</h2>
+	</header>
+	<aside>
+		<ul>
+			<li>
+				<h4><%= parse_date article.created_at %></h4>
+			</li>
+			<li>
+				<a href="/tag1" title="View all posts in tag1">tag1</a>
+				<a href="/tag2" title="View all posts in tag2">, tag2</a>
+			</li>
+			<li>
+				<a href="/thispost/comments">0 comments</a>
+			</li>
+		</ul>
+	</aside>
+	<%=  markdown(File.read("#{@archive_path + article.id.to_s}.md")) %>
+</article>
+<% end %>
+
 <h3>Articles List</h3>
 
 <% for article in @all %>
   <div>
     <a href="<%= article.id %>"><%= article.title %></a>
   </div>
-<% end %>
+<% end %>	
