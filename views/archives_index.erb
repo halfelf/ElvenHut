@@ -1,7 +1,24 @@
-<h3>Articles List</h3>
-
 <% for article in @all %>
-  <div>
-    <a href="<%= article.id %>"><%= article.title %></a>
-  </div>
+<article>
+	<header>
+		<h2>
+			<a href="<%= article.id %>"><%= article.title %></a>
+		</h2>
+	</header>
+	<aside>
+		<ul>
+			<li>
+				<h4><%= parse_date article.created_at %></h4>
+			</li>
+			<li>
+				<a href="/tag1" title="View all posts in tag1">tag1</a>
+				<a href="/tag2" title="View all posts in tag2">, tag2</a>
+			</li>
+			<li>
+				<a href="/thispost/comments">0 comments</a>
+			</li>
+		</ul>
+	</aside>
+	<%=  markdown(File.read("#{@archive_path + article.id.to_s}.md")) %>
+</article>
 <% end %>
