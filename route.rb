@@ -61,17 +61,15 @@ class ElvenHut < Sinatra::Base
   use Rack::Session::Pool, :expire_after => 2592000
   require_relative "model/article"
 
-  before '/new_post/*' do
-    auth
+  before '/new_post' do
+    admin?
   end
 
   def admin?
     #  use session instead !!! see line 44
-    request.cookies[Blog.admin_cookie_key] == Blog.admin_cookie_value
-  end
-
-  def auth
-    markdown :not_auth, :layout => :background unless admin?
+    if request.cookies[Blog.admin_cookie_key] != Blog.admin_cookie_value then
+        redirect "/not_auth"
+    end
   end
 
   get "/" do 
@@ -133,6 +131,10 @@ class ElvenHut < Sinatra::Base
     else
       markdown :not_auth, :layout => :background
     end
+  end
+
+  get "/not_auth" do
+    markdown :not_auth, :layout => :background
   end
 
   not_found do
