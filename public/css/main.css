@@ -257,7 +257,7 @@ article::after {
 	font-weight: 300;
 }
 
-#login label {
+#login label, #edit_post lable {
 	display: block;
 }
 
@@ -266,7 +266,8 @@ article::after {
 	font-weight: 400;
 }
 
-#login input {
+input, textarea {
+	font-family: 'Source Sans Pro',Tahoma, Helvetica, Arial,sans-serif;
 	padding-left: 10px;
 	margin-bottom: 10px;
 	height: 36px;
@@ -283,7 +284,7 @@ article::after {
 	width: 300px;
 }
 
-#login .button {
+#login .button, #edit_post .button {
 	font-family: 'Homenaje';
 	margin-top: 10px;
 	margin-left: 213px;
@@ -293,8 +294,40 @@ article::after {
 	padding: auto;
 }
 
-#login .button:hover {
+#login .button:hover, #edit_post .button:hover {
 	background-color: #fa453c;
+}
+
+/* post edit styles*/
+
+#edit_post {
+	min-width: 100%;
+}
+
+#edit_post h2 {
+	padding-bottom: 20px;
+}
+
+#edit_post input {
+	width: 50%;
+}
+
+#edit_post textarea {
+	max-width: 100%;
+	width: 100%;
+	height: 300px;
+	font-weight: 400;
+	padding: 10px;
+	line-height: 1.4em;
+}
+
+#edit_post textarea:focus { 
+	color:#000;
+	outline:none;
+}
+
+#edit_post .button {
+	margin-left: 0px;
 }
 
 /*basic styles
