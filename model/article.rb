@@ -4,6 +4,7 @@ require "rdiscount"
 
 class Article < Sequel::Model
   plugin :schema
+  many_to_many :tags#, :left_key => :articleid, :right_key => :tagid, :join_table => :articletags
 
   def url
     puts url
