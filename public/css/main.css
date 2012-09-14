@@ -226,6 +226,19 @@ post p {
 	font-size: 1.3em;
 }
 
+post #extend_info {
+	font-size: 1.1em;
+	color: #4c4b4b;
+	-webkit-font-smoothing: subpixel-antialiased;
+	margin-top: 50px;
+}
+
+#extend_info .tag::before {
+	content: "• ";
+	padding: 0 .4em 0 .2em;
+	display: inline-block;
+}
+
 article aside {
 	float: left;
 	width: 20%;

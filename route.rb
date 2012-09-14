@@ -75,10 +75,8 @@ class ElvenHut < Sinatra::Base
   
   def database_clean
   	Article.order("created_at DESC").each do |article|
-  		p article
   		if !File.exist? settings.archive_path + article.id.to_s + ".md" then
   			article.tags.each do |tag|
-  				p tag
   				tag.quantity -= 1
   				tag.save
   			end
@@ -87,7 +85,6 @@ class ElvenHut < Sinatra::Base
   	end
   	
   	Tag.order("created_at DESC").each do |tag|
-  		p tag
   		tag.destroy if tag.quantity == 0
   	end
   end
@@ -109,6 +106,12 @@ class ElvenHut < Sinatra::Base
 		database_clean
 		redirect "/archives/"
 	end
+  end
+  
+  get "/tag/:name" do
+  	@all = Tag.filter(:name => params[:name]).first.articles
+  	@archive_path = settings.archive_path
+	erb :archives_index, :layout => :background
   end
 
   get "/archives/:id" do
@@ -136,7 +139,6 @@ class ElvenHut < Sinatra::Base
     	end
     	tag.save
     	article.add_tag(tag)
-    	tag.add_article(article)
     end
 
     writeStream = File.new("#{settings.archive_path + article.id.to_s}.md", 'w')
