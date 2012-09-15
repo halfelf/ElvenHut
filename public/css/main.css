@@ -221,6 +221,10 @@ post {
 	margin-left: 40px;
 }
 
+post li {
+	font-size: 1.3em;
+}
+
 post p {
 	margin: 0 20px 1em 0;
 	font-size: 1.3em;
@@ -260,6 +264,29 @@ article::after {
  	background: #fa453c;
  	color: #fff;
  	text-shadow: none;
+}
+
+/* markdown style*/
+#markdown-body ul, #markdown-body ol {
+	margin: 15px 0;
+	padding-left: 30px;
+}
+
+#markdown-body pre {
+	background-color: #f8f8f8;
+	
+	font-size: 16px;
+	line-height: 25px;
+	overflow: auto;
+	padding: 9px 13px;
+	/*border: 1px solid #ccc;*/
+	border-radius: 3px;
+	margin-top: 14px;
+	border: 1px solid #fff;
+	box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-transition: all .08s ease-in-out;
 }
 
 /* login in field */
@@ -371,9 +398,9 @@ h4 {
 	font-size: 1.6em;
 }
 
-p {
+p, li {
 	font-weight: 400;
-	font-size: 1.3em;
+	font-size: 1em;
 	color: #4c4b4b;
 	-webkit-font-smoothing: antialiased;
 }
@@ -390,6 +417,15 @@ a {
 	font-weight: 300;
 	color: #0A7BC1;
 	text-decoration: none;
+}
+
+pre, code{
+	font-size: 16px;
+	font-family: Consolas, "Liberation Mono", Courier, monospace
+}
+
+pre {
+	display: block;
 }
 
 @font-face {
