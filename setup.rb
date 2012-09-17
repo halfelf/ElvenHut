@@ -8,6 +8,7 @@ if File.exist?("config/config_#{username}.yaml")
   config = YAML.load_file "config/config_#{username}.yaml"
 else
   config = YAML.load_file "config/config.yaml"
+end
 
 adapter = config["database"]["adapter"]
 database = config["database"]["database"]
