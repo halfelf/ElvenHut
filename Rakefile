@@ -1,9 +1,9 @@
 task :default => :test
 
 task :my_site do 
-    ruby 'route.rb'
+  ruby 'setup.rb'
+  ruby 'route.rb'
 end
-
 
 task :test do
   require 'rake/testtask'

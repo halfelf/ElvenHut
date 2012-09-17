@@ -11,7 +11,5 @@ A blog constructor builed based on Sinatra for self-using.
 * Install all dependence gems
 <pre><code>ElvenHut$ bundle install</code></pre>
 Be sure that all gems are installed successed.
-* Run Setup ruby script:
-<pre><code>ElvenHut$ ruby setup.rb</code></pre>
 * Then run the server:
 <pre><code>Elvenhut$ rake</code></pre>
