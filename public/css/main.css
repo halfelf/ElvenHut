@@ -221,9 +221,26 @@ post {
 	margin-left: 40px;
 }
 
+post li {
+	font-size: 1.3em;
+}
+
 post p {
 	margin: 0 20px 1em 0;
 	font-size: 1.3em;
+}
+
+post #extend_info {
+	font-size: 1.1em;
+	color: #4c4b4b;
+	-webkit-font-smoothing: subpixel-antialiased;
+	margin-top: 50px;
+}
+
+#extend_info .tag::before {
+	content: "• ";
+	padding: 0 .4em 0 .2em;
+	display: inline-block;
 }
 
 article aside {
@@ -247,6 +264,110 @@ article::after {
  	background: #fa453c;
  	color: #fff;
  	text-shadow: none;
+}
+
+/* markdown style*/
+#markdown-body ul, #markdown-body ol {
+	margin: 15px 0;
+	padding-left: 30px;
+}
+
+#markdown-body pre {
+	background-color: #f8f8f8;
+	
+	font-size: 16px;
+	line-height: 25px;
+	overflow: auto;
+	padding: 9px 13px;
+	/*border: 1px solid #ccc;*/
+	border-radius: 3px;
+	margin-top: 14px;
+	border: 1px solid #fff;
+	box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-transition: all .08s ease-in-out;
+}
+
+/* login in field */
+#login {
+	width: 30%;
+	margin: 90px auto;
+	font-size: 1.25em;
+	font-weight: 300;
+}
+
+#login label, #edit_post lable {
+	display: block;
+}
+
+#login p {
+	font-family: 'Homenaje';
+	font-weight: 400;
+}
+
+input, textarea {
+	font-family: 'Source Sans Pro',Tahoma, Helvetica, Arial,sans-serif;
+	padding-left: 10px;
+	margin-bottom: 10px;
+	height: 36px;
+	line-height: 100%;
+	color: #4b5258;
+	background-color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	border: 1px solid #fff;
+	box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-transition: all .08s ease-in-out;
+	width: 300px;
+}
+
+#login .button, #edit_post .button {
+	font-family: 'Homenaje';
+	margin-top: 10px;
+	margin-left: 213px;
+	color: #f5efe0;
+	width: 100px;
+	background-color: #4b5258;
+	padding: auto;
+}
+
+#login .button:hover, #edit_post .button:hover {
+	background-color: #fa453c;
+}
+
+/* post edit styles*/
+
+#edit_post {
+	min-width: 100%;
+}
+
+#edit_post h2 {
+	padding-bottom: 20px;
+}
+
+#edit_post input {
+	width: 50%;
+}
+
+#edit_post textarea {
+	max-width: 100%;
+	width: 100%;
+	height: 300px;
+	font-weight: 400;
+	padding: 10px;
+	line-height: 1.4em;
+}
+
+#edit_post textarea:focus { 
+	color:#000;
+	outline:none;
+}
+
+#edit_post .button {
+	margin-left: 0px;
 }
 
 /*basic styles
@@ -277,9 +398,9 @@ h4 {
 	font-size: 1.6em;
 }
 
-p {
+p, li {
 	font-weight: 400;
-	font-size: 1.3em;
+	font-size: 1em;
 	color: #4c4b4b;
 	-webkit-font-smoothing: antialiased;
 }
@@ -296,6 +417,15 @@ a {
 	font-weight: 300;
 	color: #0A7BC1;
 	text-decoration: none;
+}
+
+pre, code{
+	font-size: 16px;
+	font-family: Consolas, "Liberation Mono", Courier, monospace
+}
+
+pre {
+	display: block;
 }
 
 @font-face {

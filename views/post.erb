@@ -5,5 +5,23 @@
 		</h2>
 		<h4><%= parse_date @article.created_at %></h4>
 	</header>
+	<div id="markdown-body">
 	<%= markdown(File.read(@contentfilepath))%>
+	</div>
+	<div id="extend_info">
+		Posted by <%=@article.author%>
+		<span class="tag">
+			<% if @article.tags.size == 0 then%>
+				No tags
+			<% else%>
+			<% @article.tags.sort!{|x, y| y.quantity <=> x.quantity }.each_with_index do |tag, index| %>
+					<% if index == @article.tags.length - 1 then %>
+						<a href="/tag/<%= tag.name%>" title="View all posts about <%=tag.name %>"><%= tag.name%></a>
+					<% else %>
+						<a href="/tag/<%= tag.name%>" title="View all posts about <%=tag.name %>"><%= tag.name%></a> ,
+					<% end %>
+			<% end %>
+			<% end %>
+		</span>
+	</div>
 </post>

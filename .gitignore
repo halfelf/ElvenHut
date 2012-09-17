@@ -4,3 +4,4 @@ views/archives/
 **/*.swp
 *.swp
 *~
+config/config_*.yaml
