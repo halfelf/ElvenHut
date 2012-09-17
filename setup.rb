@@ -3,7 +3,8 @@
 
 require 'yaml'
 
-config = YAML.load_file "config/config.yaml"
+username = ENV['USER']  #linux/unix only, use "ENV['USERNAME']" on windows
+config = YAML.load_file "config/config_#{username}.yaml"
 
 adapter = config["database"]["adapter"]
 database = config["database"]["database"]
