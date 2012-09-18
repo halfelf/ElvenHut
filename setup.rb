@@ -17,4 +17,5 @@ host = config["database"]["host"]
 passwd = config["database"]["passwd"]
 
 sequel_command = "sequel -m db/migration #{adapter}://#{user}:#{passwd}@#{host}/#{database}"
+puts sequel_command
 system sequel_command
