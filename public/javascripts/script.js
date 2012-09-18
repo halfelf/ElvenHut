@@ -31,4 +31,9 @@ if (this.className == "")
     	}
     }
 );
+/*
+	var bodyHeight = $('#outline').height() + $('#wrap').height() + $('footer').height();
+
+          $('body').css('height', window.innerHeight +'px');
+          $('html').css('height', window.innerHeight +'px');*/
 		});
