@@ -429,6 +429,12 @@ pre, code{
 	font-family: Consolas, "Liberation Mono", Courier, monospace
 }
 
+embed {
+	height: 0px;
+	display: block;
+	line-height: 0px;
+}
+
 pre {
 	display: block;
 }
