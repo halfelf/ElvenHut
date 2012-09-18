@@ -12,4 +12,4 @@ A blog constructor builed based on Sinatra for self-using.
 <pre><code>ElvenHut$ bundle install</code></pre>
 Be sure that all gems are installed successed.
 * Then run the server:
-<pre><code>Elvenhut$ rake</code></pre>
+<pre><code>Elvenhut$ rackup config.ru</code></pre>
