@@ -68,7 +68,7 @@ class ElvenHut < Sinatra::Base
   end
 
   def admin?
-	  !(request.cookies[Blog.admin_cookie_key] != Blog.admin_cookie_value)
+    session[:username] == Blog.admin_name && session[:password] == Blog.admin_passwd
   end
 
   def database_clean
@@ -154,9 +154,16 @@ class ElvenHut < Sinatra::Base
     erb :login, :layout=> :background
   end
 
+  get "/logout" do
+    session.clear
+    redirect "/"
+  end
+
   post "/login" do
     if params[:username] == Blog.admin_name && params[:password] == Blog.admin_passwd then
-      response.set_cookie(Blog.admin_cookie_key, Blog.admin_cookie_value)
+      session[:username] = params[:username]
+      session[:password] = params[:password]
+      #response.set_cookie(Blog.admin_cookie_key, Blog.admin_cookie_value)
       redirect '/'
     else
       markdown :not_auth, :layout => :background
