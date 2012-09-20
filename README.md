@@ -13,4 +13,6 @@ A blog constructor builed based on Sinatra for self-using.
 * Apply migrations to run Sequel's migrator with bin/sequel -m:
 <pre><code>ElvenHut$ ruby setup.rb</code></pre>
 * Then run the server:
-<pre><code>ElvenHut$ rackup config.ru</code></pre>
+<pre><code>ElvenHut$ rake server</code></pre>
+* To run tests:
+<pre><code>ElvenHut$ rake</code></pre>
