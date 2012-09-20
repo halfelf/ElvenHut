@@ -64,14 +64,11 @@ class ElvenHut < Sinatra::Base
   require_relative "model/tag"
 
   before '/new_post' do
-    admin?
+    redirect "/not_auth" if !admin?
   end
 
   def admin?
-    #  use session instead !!! see line 44
-    if request.cookies[Blog.admin_cookie_key] != Blog.admin_cookie_value then
-      redirect "/not_auth"
-    end
+	  !(request.cookies[Blog.admin_cookie_key] != Blog.admin_cookie_value)
   end
 
   def database_clean

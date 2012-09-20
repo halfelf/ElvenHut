@@ -1,0 +1,42 @@
+	<div id="adminbar" role="navigation">
+  		<div id="leftbar">
+  		<ul>
+  			<li>
+  				<a href="/new_post">
+	  				<span class="addpost-icon ab-icon"></span>
+	  				<span class="ab-label">Add</span>
+  				</a>
+  			</li>
+  			<% if /\/archives\/[0-9]+/ =~ request.path_info then %>
+  			<li>
+  				<a href="edit">
+	  				<span class="editpost-icon ab-icon"></span>
+	  				<span class="ab-label">Edit</span>
+  				</a>
+  			</li>
+  			<li>
+  				<a href="delete">
+	  				<span class="deletepost-icon ab-icon"></span>
+	  				<span class="ab-label">Delete</span>
+  				</a>
+  			</li>
+  			<% end %>
+  		</ul>
+  		</div>
+  		<div id="rightbar">
+  		<ul>
+  			<li>
+  				<a href="/logout">
+	  				<span class="logout-icon ab-icon"></span>
+	  				<span class="ab-label">Logout</span>
+  				</a>
+  			</li>
+  			<li>
+  				<a href="">
+	  				<span class="user-icon ab-icon"></span>
+	  				<span class="ab-label">Hello, <%=Blog.admin_name%></span>
+  				</a>
+  			</li>
+  		</ul>	
+  		</div>
+  	</div>

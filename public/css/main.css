@@ -16,6 +16,107 @@ body {
 	min-width: 1280px;
 }
 
+/*adminbar styles*/
+#adminbar {
+	direction: ltr;
+	color: #f5efe0;
+	font-size: 1em;
+	font-weight: 500;
+	height: 28px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-width: 1280px;
+	z-index: 99999;
+	background-color: #4b5258;
+}
+
+#adminbar #leftbar li {
+	box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-transition: all .08s ease-in-out;
+	float: left;
+}
+
+#adminbar #rightbar li {
+	box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-transition: all .08s ease-in-out;
+	float: right;
+}
+
+#adminbar li:hover{
+	background-color: #fa453c;
+}
+
+#adminbar ul li a {
+	color: #f5efe0;
+	font-weight: 500;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0px 12px 0px 12px;
+	height: 28px;
+	display: block;
+}
+
+#adminbar * {
+	height: auto;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	position: static;
+	text-transform: none;
+	letter-spacing: normal;
+	color: #ccc;
+	text-shadow: #444 0 -1px 0;
+}
+
+#adminbar .sub_left, #adminbar ul, #adminbar ul li {
+	background: 0;
+	clear: none;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	z-index: 99999;
+}
+
+#adminbar .ab-icon{
+	position: relative;
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin-top: 5px;
+	background-repeat: no-repeat;
+}
+
+#adminbar .ab-label {
+	margin-left: 4px;
+}
+
+#adminbar .addpost-icon {
+	background-image: url(/css/img/add_item.png);
+}
+
+#adminbar .editpost-icon {
+	background-image: url(/css/img/edit_item.png);
+}
+
+#adminbar .deletepost-icon {
+	background-image: url(/css/img/trash.png);
+}
+
+#adminbar .logout-icon {
+	background-image: url(/css/img/login.png);
+}
+
+#adminbar .user-icon {
+	background-image: url(/css/img/user.png);
+}
+
 #outline {
 	border-top: 5px solid #4b5258;
 }
@@ -161,9 +262,9 @@ header[role="banner"] {
   	text-align: center;
   	text-decoration: none;
  	text-transform: UPPERCASE;
-  	-webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-  	-moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-  	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  	-webkit-box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+  	-moz-box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+  	box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
   	-moz-border-radius-topleft: 0px;
   	-moz-border-radius-topright: 0px;
   	-moz-border-radius-bottomright: 3px;
@@ -360,7 +461,7 @@ input, textarea {
 #edit_post textarea {
 	max-width: 100%;
 	width: 100%;
-	height: 300px;
+	min-height: 300px;
 	font-weight: 400;
 	padding: 10px;
 	line-height: 1.4em;

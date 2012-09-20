@@ -12,7 +12,12 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
   </head>
   <body>
-  	<div id="outline"></div>
+  	<% if admin? then%>
+  		<%= erb :adminbar %>
+  		<div id="outline" style="margin-top: 23px;"></div>
+  	<% else %>
+  		<div id="outline"></div>
+  	<% end %>
   	<div id="wrap">
   		<header role="banner">
   			<a href="/" id="logo">
