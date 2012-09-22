@@ -1,0 +1,32 @@
+<div id="edit_post">
+	<h2>Add a new post</h2>
+	<form action="<%= url %>" method="post" name="edit">
+		<div id="title_input">
+      <input type="text" name="title" placeholder="Title (should not be null)" value="<%=article.title %>" />
+		</div>
+    <div id="tag_input">
+      <input type="text" name="tags" placeholder="Tags (split by ',(en)')"
+      <% if article.tags.size != 0 && article.tags != nil then%>
+        value="
+        <% @article.tags.sort!{|x, y| y.quantity <=> x.quantity }.each_with_index do |tag, index| %>
+          <% if index == @article.tags.length - 1 then %>
+            <%= tag.name%>
+          <% else %>
+            <%= tag.name%> ,
+          <% end %>
+        <% end %>
+        "
+      <% end%>
+      />
+    </div>
+		<div id="author_input">
+      <input type="text" name="author" placeholder="Author" value="<%=article.author%>"/>
+		</div>
+		<div id="content_input">
+      <textarea name="content" rows="50" cols="2"> <%= File.read("#{settings.archive_path}#{article.id.to_s}.md") if article.id != nil%></textarea>
+		</div>
+		<div for="submit_btn">
+			<input type="submit" value="Save" class="button" />
+		</div>
+	</form>
+</div>

@@ -9,7 +9,7 @@
   			</li>
   			<% if /\/archives\/[0-9]+/ =~ request.path_info then %>
   			<li>
-  				<a href="edit">
+        <a href="<%= request.path_info + "/edit"%>">
 	  				<span class="editpost-icon ab-icon"></span>
 	  				<span class="ab-label">Edit</span>
   				</a>

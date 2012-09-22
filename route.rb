@@ -63,7 +63,7 @@ class ElvenHut < Sinatra::Base
   require_relative "model/article"
   require_relative "model/tag"
 
-  before '/new_post' do
+  before %r{(/new_post)|(/[0-9]*/edit)} do
     redirect "/not_auth" if !admin?
   end
 
@@ -112,15 +112,16 @@ class ElvenHut < Sinatra::Base
     erb :archives_index, :layout => :background
   end
 
-  get "/archives/:id" do
-    @article = Article.filter(:id => params[:id]).first
+  get %r{/archives/([0-9]+)$} do
+    p params[:captures]
+    @article = Article.filter(:id => params[:captures].first).first
     not_found unless @article
     @contentfilepath = "#{settings.archive_path + @article.id.to_s}.md"
     erb :post, :layout=>:background
   end
 
   get "/new_post" do
-    erb :new_post, :layout => :background
+    erb :new_edit_post, :layout => :background, :locals=>{:article=>Article.new}
   end
 
   post "/new_post" do
@@ -137,6 +138,40 @@ class ElvenHut < Sinatra::Base
       end
       tag.save
       article.add_tag(tag)
+    end
+
+    writeStream = File.new("#{settings.archive_path + article.id.to_s}.md", 'w')
+    writeStream.write params[:content]
+    writeStream.close
+    redirect "/archives/#{article.id}"
+  end
+
+  get %r{/archives/([0-9]+)/edit$} do
+    p params
+    article = Article.filter(:id => params[:captures].first).first
+    not_found unless article
+    erb :new_edit_post, :layout => :background, :locals=>{:article=>article}
+  end
+
+  post "/archives/:article_id/edit" do
+    article = Article.filter(:id => params[:article_id]).first
+    article.title = params[:title]
+    article.author = params[:author]
+    article.update_at = Time.new
+    article.save
+
+    params[:tags].split(/,/).each do |item|
+      tag_name = item.strip! || item if item
+      if article.tags.select{|tag| tag.name == tag_name}.size == 0 then
+        tag = Tag.filter(:name => tag_name).first
+        if tag == nil then
+          tag = Tag.new :name => tag_name, :quantity => 1
+        else
+          tag.quantity += 1
+        end
+        tag.save
+        article.add_tag(tag)
+      end
     end
 
     writeStream = File.new("#{settings.archive_path + article.id.to_s}.md", 'w')
