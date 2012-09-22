@@ -87,6 +87,20 @@ class ElvenHut < Sinatra::Base
     end
   end
 
+  def process_tag tags, article
+    tags.split(/,/).each do |item|
+      tag_name = item.strip! || item if item
+      tag = Tag.filter(:name => tag_name).first
+      if tag == nil then
+        tag = Tag.new :name => tag_name, :quantity => 1
+      else
+        tag.quantity += 1
+      end
+      tag.save
+      article.add_tag(tag)
+    end
+  end
+
   get "/" do 
     if File.exist?(settings.view_path + "my_index.md")
       markdown :my_index, :layout => :background
@@ -113,7 +127,6 @@ class ElvenHut < Sinatra::Base
   end
 
   get %r{/archives/([0-9]+)$} do
-    p params[:captures]
     @article = Article.filter(:id => params[:captures].first).first
     not_found unless @article
     @contentfilepath = "#{settings.archive_path + @article.id.to_s}.md"
@@ -121,24 +134,14 @@ class ElvenHut < Sinatra::Base
   end
 
   get "/new_post" do
-    erb :new_edit_post, :layout => :background, :locals=>{:article=>Article.new}
+    erb :edit_post, :layout => :background, :locals=>{:article=>Article.new}
   end
 
   post "/new_post" do
     article = Article.new :title => params[:title], :author => params[:author], :created_at => Time.now, :update_at => Time.new
     article.save
 
-    params[:tags].split(/,/).each do |item|
-      tag_name = item.strip! || item if item
-      tag = Tag.filter(:name => tag_name).first
-      if tag == nil then
-        tag = Tag.new :name => tag_name, :quantity => 1
-      else
-        tag.quantity += 1
-      end
-      tag.save
-      article.add_tag(tag)
-    end
+    process_tag params[:tags], article
 
     writeStream = File.new("#{settings.archive_path + article.id.to_s}.md", 'w')
     writeStream.write params[:content]
@@ -150,7 +153,7 @@ class ElvenHut < Sinatra::Base
     p params
     article = Article.filter(:id => params[:captures].first).first
     not_found unless article
-    erb :new_edit_post, :layout => :background, :locals=>{:article=>article}
+    erb :edit_post, :layout => :background, :locals=>{:article=>article}
   end
 
   post "/archives/:article_id/edit" do
@@ -160,19 +163,10 @@ class ElvenHut < Sinatra::Base
     article.update_at = Time.new
     article.save
 
-    params[:tags].split(/,/).each do |item|
-      tag_name = item.strip! || item if item
-      if article.tags.select{|tag| tag.name == tag_name}.size == 0 then
-        tag = Tag.filter(:name => tag_name).first
-        if tag == nil then
-          tag = Tag.new :name => tag_name, :quantity => 1
-        else
-          tag.quantity += 1
-        end
-        tag.save
-        article.add_tag(tag)
-      end
-    end
+    p article.tags
+    article.tags.map{|tag| tag.quantity -= 1; tag.save}.each{|tag| article.remove_tag tag}
+
+    process_tag params[:tags], article
 
     writeStream = File.new("#{settings.archive_path + article.id.to_s}.md", 'w')
     writeStream.write params[:content]

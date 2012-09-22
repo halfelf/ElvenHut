@@ -7,17 +7,7 @@
     <div id="tag_input">
       <input type="text" name="tags" placeholder="Tags (split by ',(en)')"
       <% if article.tags.size != 0 && article.tags != nil then%>
-        value="
-        <% @article.tags.sort!{|x, y| y.quantity <=> x.quantity }.each_with_index do |tag, index| %>
-          <% if index == @article.tags.length - 1 then %>
-            <%= tag.name%>
-          <% else %>
-            <%= tag.name%> ,
-          <% end %>
-        <% end %>
-        "
-      <% end%>
-      />
+        value="<% article.tags.sort!{|x, y| y.quantity <=> x.quantity }.each_with_index do |tag, index| %><% if index == article.tags.length - 1 then %><%= tag.name%><% else %><%= tag.name%> ,<% end %><% end %>"<% end%>/>
     </div>
 		<div id="author_input">
       <input type="text" name="author" placeholder="Author" value="<%=article.author%>"/>
