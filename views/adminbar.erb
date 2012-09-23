@@ -9,13 +9,28 @@
   			</li>
   			<% if /\/archives\/[0-9]+/ =~ request.path_info then %>
   			<li>
-        <a href="<%= request.path_info + "/edit"%>">
+	  			<a href="
+	  				<% if request.path_info =~ /\/edit$/ then%>
+	  					<%= request.path_info.gsub(/\/edit.*$/, "/edit")%>
+	  				<% elsif request.path_info =~ /archives\/[0-9]*$/%>
+	  					<%= request.path_info + "/edit"%>
+	  				<% else%>
+	  					#
+	  				<% end%>">
+	  					
 	  				<span class="editpost-icon ab-icon"></span>
 	  				<span class="ab-label">Edit</span>
   				</a>
   			</li>
   			<li>
-  				<a href="delete">
+  				<a href="
+  					<% if request.path_info =~ /\/delete$/ then%>
+	  					<%= request.path_info.gsub(/\/delete.*$/, "/delete")%>
+	  				<% elsif request.path_info =~ /archives\/[0-9]*$/%>
+	  					<%= request.path_info + "/delete"%>
+	  				<% else%>
+	  					#
+	  				<% end%>">
 	  				<span class="deletepost-icon ab-icon"></span>
 	  				<span class="ab-label">Delete</span>
   				</a>

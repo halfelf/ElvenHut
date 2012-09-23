@@ -63,7 +63,7 @@ class ElvenHut < Sinatra::Base
   require_relative "model/article"
   require_relative "model/tag"
 
-  before %r{(/new_post)|(/[0-9]*/edit)} do
+  before %r{(/new_post)|(/[0-9]*/edit)|(/[0-9]*/delete)} do
     redirect "/not_auth" if !admin?
   end
 
@@ -149,8 +149,26 @@ class ElvenHut < Sinatra::Base
     redirect "/archives/#{article.id}"
   end
 
+  get %r{/archives/([0-9]+)/delete$} do
+    article = Article.filter(:id => params[:captures].first).first
+    not_found unless article
+    erb :delete_post, :layout => :background, :locals=>{:article=>article}
+  end
+
+  post %r{/archives/([0-9]+)/delete$} do
+    article = Article.filter(:id => params[:captures].first).first
+    not_found unless article
+    article.tags.map{|tag| tag.quantity -= 1; tag.save}.each{|tag| article.remove_tag tag}
+    md_filepath = settings.archive_path + article.id.to_s + ".md"
+    if File.exist? md_filepath then
+      File.delete md_filepath
+    end
+    article.destroy
+    database_clean
+    redirect "/archives/"
+  end
+
   get %r{/archives/([0-9]+)/edit$} do
-    p params
     article = Article.filter(:id => params[:captures].first).first
     not_found unless article
     erb :edit_post, :layout => :background, :locals=>{:article=>article}
@@ -158,6 +176,7 @@ class ElvenHut < Sinatra::Base
 
   post "/archives/:article_id/edit" do
     article = Article.filter(:id => params[:article_id]).first
+    not_found unless article
     article.title = params[:title]
     article.author = params[:author]
     article.update_at = Time.new

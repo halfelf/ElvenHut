@@ -422,7 +422,28 @@ input, textarea {
 	width: 300px;
 }
 
-#login .button, #edit_post .button {
+#delete_alert {
+	display: block;
+	height: 70px;
+	width: 100%;
+}
+
+#delete_alert h2{
+	width: 500px;
+	float: left;
+}
+
+#delete_alert form{
+	float: right;
+	width: 120px;
+}
+
+#delete_alert form .button{
+	width: 120px;
+	margin: 10px 0px 0px 0px;
+}
+
+#login .button, #edit_post .button, .button{
 	font-family: 'Homenaje';
 	margin-top: 10px;
 	margin-left: 213px;
@@ -432,7 +453,7 @@ input, textarea {
 	padding: auto;
 }
 
-#login .button:hover, #edit_post .button:hover {
+#login .button:hover, #edit_post .button:hover, .button:hover{
 	background-color: #fa453c;
 }
 
