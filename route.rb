@@ -81,10 +81,6 @@ class ElvenHut < Sinatra::Base
         article.destroy
       end
     end
-
-    Tag.order("created_at DESC").each do |tag|
-      tag.destroy if tag.quantity == 0
-    end
   end
 
   def process_tag tags, article
@@ -98,6 +94,12 @@ class ElvenHut < Sinatra::Base
       end
       tag.save
       article.add_tag(tag)
+    end
+  end
+
+  def write_mdfile filename, content
+    File.open("#{settings.archive_path + filename}.md", "w:utf-8") do |write_stream|
+      write_stream.write content
     end
   end
 
@@ -143,9 +145,7 @@ class ElvenHut < Sinatra::Base
 
     process_tag params[:tags], article
 
-    writeStream = File.new("#{settings.archive_path + article.id.to_s}.md", 'w')
-    writeStream.write params[:content]
-    writeStream.close
+    write_mdfile article.id.to_s, params[:content]
     redirect "/archives/#{article.id}"
   end
 
@@ -160,11 +160,8 @@ class ElvenHut < Sinatra::Base
     not_found unless article
     article.tags.map{|tag| tag.quantity -= 1; tag.save}.each{|tag| article.remove_tag tag}
     md_filepath = settings.archive_path + article.id.to_s + ".md"
-    if File.exist? md_filepath then
-      File.delete md_filepath
-    end
+    File.delete md_filepath if File.exist? md_filepath
     article.destroy
-    database_clean
     redirect "/archives/"
   end
 
@@ -182,14 +179,11 @@ class ElvenHut < Sinatra::Base
     article.update_at = Time.new
     article.save
 
-    p article.tags
     article.tags.map{|tag| tag.quantity -= 1; tag.save}.each{|tag| article.remove_tag tag}
 
     process_tag params[:tags], article
 
-    writeStream = File.new("#{settings.archive_path + article.id.to_s}.md", 'w')
-    writeStream.write params[:content]
-    writeStream.close
+    write_mdfile article.id.to_s, params[:content]
     redirect "/archives/#{article.id}"
   end
 
