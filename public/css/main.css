@@ -40,7 +40,7 @@ body {
 	float: right;
 }
 
-#adminbar li:hover{
+#adminbar li:hover {
 	background-color: #fa453c;
 }
 
@@ -190,7 +190,7 @@ footer li.rss a{
 	padding: .2em 0 .65em 22px;
 }
 
-footer ul li a:visited, footer ul li a:link{
+footer ul li a:visited, footer ul li a:link {
 	color: #f5efe0;
 }
 
@@ -376,11 +376,15 @@ article::after {
 	font-size: 16px;
 	line-height: 25px;
 	overflow: auto;
-	padding: 9px 13px;
+/*	padding: 9px 13px;*/
 	/*border: 1px solid #ccc;*/
+}
+
+#markdown-body pre code {
 	border-radius: 3px;
-	margin-top: 14px;
+/*	margin-top: 14px;*/
 	border: 1px solid #fff;
+  padding: 0.5em;
 	box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
 	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
 	-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);

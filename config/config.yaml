@@ -11,5 +11,12 @@ blog:
     description: A blog engine for personal using
     username: admin
     passwd: admin
-    cookie_key: elvenhut_admin
-    cookie_value: some randome information for elvenhub_admin
+social:
+    twitter:
+    gplus:
+    github:
+basic_setting:
+    code_stype: xcode
+    post_each_page: -1
+    show_comment: yes
+    show_author: yes

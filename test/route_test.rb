@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require_relative 'test_helper'
-require 'route'
+require 'elvenhut'
 
 class RouteTest < Test::Unit::TestCase
   include Rack::Test::Methods
