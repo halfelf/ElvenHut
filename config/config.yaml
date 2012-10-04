@@ -7,16 +7,15 @@ database:
 blog:
     title: ElvenHut | A blog engine for personal using
     url: www.example.com
-    sitename: ElvenHut
-    description: A blog engine for personal using
-    username: admin
-    passwd: admin
+    site_name: ElvenHut
+    site_description: A blog engine for personal using
+    admin_name: admin
+    admin_passwd: admin
 social:
-    twitter:
     gplus:
-    github:
+    github: https://github.com/halfelf/ElvenHut
 basic_setting:
-    code_stype: xcode
+    code_stype: default
     post_each_page: -1
     show_comment: yes
     show_author: yes

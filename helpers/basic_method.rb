@@ -12,4 +12,10 @@ module BasicMethods
   def parse_date origin_date
     origin_date.strftime("%b %d, %Y")
   end
+
+  class ::Hash
+    def to_struct struct_name = nil
+      Struct.new(struct_name, *keys).new(*values)
+    end
+  end
 end
