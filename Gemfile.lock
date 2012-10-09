@@ -1,6 +1,7 @@
 GEM
   remote: http://ruby.taobao.org/
   specs:
+    builder (3.0.0)
     mysql2 (0.3.11)
     rack (1.4.1)
     rack-protection (1.2.0)
@@ -20,6 +21,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  builder
   mysql2
   rack-test
   rake
