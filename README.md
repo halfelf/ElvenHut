@@ -1,7 +1,11 @@
 ElvenHut
 ========
 
-A blog constructor builed based on Sinatra for self-using. 
+A blog constructor based on Sinatra for building tech posts site. 
+
+##Browser support
+* Tested with Safari and Firefox on Mountain Lion. All of them is the newest version.
+* Evil and OLD browsers (like IE6) will never be supported.
 
 ##Setup
 * Duplicate the config template **config/config.yaml** and rename it **config_USERNAME.yaml** (which USERNAME is your account name in unix/linux). 
