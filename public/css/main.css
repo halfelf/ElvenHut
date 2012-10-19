@@ -370,25 +370,28 @@ article::after {
 	padding-left: 35px;
 }
 
+#markdown-body h2 {
+  font-size: 1.6em;
+}
+
+#markdown-body h3 {
+  font-size: 1.4em;
+}
+
+#markdown-body h4 {
+  font-size: 1.2em;
+}
+
 #markdown-body pre {
-	background-color: #f8f8f8;
-	
 	font-size: 16px;
-	line-height: 25px;
-	overflow: auto;
-/*	padding: 9px 13px;*/
-	/*border: 1px solid #ccc;*/
 }
 
 #markdown-body pre code {
-	border-radius: 3px;
-/*	margin-top: 14px;*/
 	border: 1px solid #fff;
-  padding: 0.5em;
-	box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
-	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
-	-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
-	-webkit-transition: all .08s ease-in-out;
+   padding: 0.5em;
+	line-height: 25px;
+	padding: 9px 13px;
+  border-radius: 0px;
 }
 
 /* login in field */
@@ -543,8 +546,31 @@ a {
 }
 
 pre, code{
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-all;       /* Internet Explorer 5.5+ */
 	font-size: 16px;
-	font-family: Consolas, "Liberation Mono", Courier, monospace
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code {
+  
+  border: 1px solid #fff;
+  background: #fff;
+	box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+	-webkit-transition: all .08s ease-in-out;
+  padding: 3px 5px;
+/*  border-radius: 3px;*/
+}
+
+pre{
+	font-size: 16px;
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+  overflow-x: scroll;
 }
 
 embed {

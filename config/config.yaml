@@ -15,6 +15,7 @@ social:
     gplus:
     github: https://github.com/halfelf/ElvenHut
 basic_setting:
+    # <code> stype options: public/css/highlight/(.*).css
     code_stype: default
     post_each_page: -1
     show_comment: yes
