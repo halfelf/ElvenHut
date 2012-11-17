@@ -5,3 +5,4 @@ views/archives/
 *.swp
 *~
 config/config_*.yaml
+vendor/
