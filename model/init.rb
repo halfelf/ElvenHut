@@ -4,3 +4,4 @@ require "sequel"
 
 require_relative "article"
 require_relative "tag"
+require_relative "comment"
