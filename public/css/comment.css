@@ -1,0 +1,202 @@
+comment {
+  /*
+  margin: 0 auto;
+  background: #f5f5f5;
+  color: #555;
+*/
+  /* make reference to the Yanone Kaffeesatz font */
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+}
+
+comment h3 {
+  margin: 0 0 20px 0;
+}
+comment h2 { 
+  color: #555;
+  font-size: 1.75em;
+  font-weight: 300;
+  margin: 0 0 20px 0; 
+}
+
+comment label {	
+	font-family: 'Homenaje', arial, sans-serif;
+  font-size: 20px;
+  color: #666; 
+}
+
+comment form { 
+  float: left;
+/*  border: 1px solid #ddd; */
+  padding: 30px 0 20px 0; 
+  margin-bottom: 30px;
+  width: 100%;
+/*  margin: 75px 0 0 0; */
+/*  background: #fff;*/
+
+  /* -- CSS3 - define rounded corners for the form -- */	
+/*  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px; 		*/
+
+  /* -- CSS3 - create a background graident -- */
+  /*
+  background: -webkit-gradient(linear, 0% 0%, 0% 40%, from(#EEE), to(#FFFFFF)); 
+  background: -moz-linear-gradient(0% 40% 90deg,#FFF, #EEE); 
+  */
+
+  /* -- CSS3 - add a drop shadow -- */
+  /*
+  -webkit-box-shadow:0px 0 50px #ccc;
+  -moz-box-shadow:0px 0 50px #ccc; 
+  box-shadow:0px 0 50px #ccc;		 		
+  */
+}	
+
+comment fieldset { border: none; }
+
+#user-details { 
+  float: left;
+  width: 25%; 
+}
+
+#user-message { 
+  float: right;
+  width: 65%;
+  display: block;
+}
+
+comment input, comment textarea { 		
+  height: 100%;
+  padding: 8px; 
+  margin: 4px 0 15px 0; 
+  background: #fff; 
+  /*width: 220px; */
+  width: 100%;
+  font-size: 14px; 
+  color: #555; 
+  border: 1px #ddd solid;
+
+  /* -- CSS3 Shadow - create a shadow around each input element -- */ 
+  -webkit-box-shadow: 0px 0px 4px #aaa;
+  -moz-box-shadow: 0px 0px 4px #aaa; 
+  box-shadow: 0px 0px 4px #aaa;
+
+  /* -- CSS3 Transition - define what the transition will be applied to (i.e. the background) -- */		
+  -webkit-transition: background 0.3s linear;							
+}
+
+comment textarea {		
+  margin-right: 5%;
+  width: 100%; 
+  height: 148px; 		 		
+  font-size: 1em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+comment input:hover, comment textarea:hover { 
+  background: #eee; 
+}
+
+comment input.submit { 	
+  width: 150px; 
+  color: #eee; 
+/*  text-transform: uppercase; */
+  margin-top: 10px;
+  background-color: #4b5258;
+  border: none;
+
+  /* -- CSS3 Transition - define which property to animate (i.e. the shadow)  -- */
+  -webkit-transition: -webkit-box-shadow 0.3s linear;
+
+  /* -- CSS3 - Rounded Corners -- */
+  /*
+  -moz-border-radius: 4px; 
+  -webkit-border-radius: 4px;
+  border-radius: 4px; 
+  */
+
+  /* -- CSS3 Shadow - create a shadow around each input element -- */ 
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4b5258), to(#6e6e6e)); 
+  background: -moz-linear-gradient(25% 75% 90deg,#6e6e6e, #4b5258);		
+} 
+
+comment input.submit:hover { 		
+  -webkit-box-shadow: 0px 0px 20px #555;
+  -moz-box-shadow: 0px 0px 20px #aaa; 
+  box-shadow: 0px 0px 20px #555;	
+  cursor:  pointer; 
+} 		
+
+#comments ol, ul, li{
+  list-style:none;
+}
+
+#comments li {
+  position: relative;
+}
+
+#comments li .detail {
+  margin: 16px 0 0 90px;
+}
+
+#comments a.reply {
+  float:right;
+  color: #6e6e6e;
+  font-weight: 400;
+  font-size: 0.85em;
+  margin-top: 0.1em;
+}
+
+#comments a.reply:hover {
+text-shadow: 0 2px 2px #4b5258;
+}
+
+#comments .detailContent {
+  padding: 20px 20px 10px 8px;
+  position: relative;
+  /*
+  -webkit-transition-property: background-color;
+  -moz-transition-property: background-color;
+  -ms-transition-property: background-color;
+  -o-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: 3s;
+  -moz-transition-duration: 3s;
+  -ms-transition-duration: 3s;
+  -o-transition-duration: 3s;
+  transition-duration: 3s;*/
+}
+
+#comments li .meta {
+  margin: 0 0 1em 0;
+}
+
+#comments li .author, #comments li .author a {
+  color:#4b5258;
+  font-weight:bold;
+}
+
+#comments li .time {
+  color: #999;
+  font-size: 0.85em;
+  float:right;
+  margin: .1em 16px 0 0;
+}
+
+#comments li .avatar {
+  width: 64px;
+  height: 64px;
+  top: 20px;
+  x-shadow: 0 2px 5px #060606;
+  -webkit-box-shadow: 0 2px 5px #060606;
+  box-shadow: 0 2px 5px #060606;
+  left: 10px;
+
+  position: absolute;
+}
+
+#comments ul {
+  margin: 0 0 0 90px;
+}
