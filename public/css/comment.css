@@ -57,12 +57,14 @@ comment fieldset { border: none; }
 #user-details { 
   float: left;
   width: 25%; 
+  margin-left: 5px;
 }
 
 #user-message { 
   float: right;
   width: 65%;
   display: block;
+  margin-right: 5px;
 }
 
 comment input, comment textarea { 		
@@ -154,7 +156,7 @@ comment input.submit:hover, input.cancel:hover {
   margin-top: 0.1em;
 }
 
-#comments a.reply:hover {
+#comments a:hover {
 text-shadow: 0 2px 2px #4b5258;
 }
 
@@ -183,6 +185,10 @@ text-shadow: 0 2px 2px #4b5258;
   font-weight:bold;
 }
 
+#comments li .say {
+  margin-left: 0px;
+}
+
 #comments li .time {
   color: #999;
   font-size: 0.85em;
@@ -194,12 +200,18 @@ text-shadow: 0 2px 2px #4b5258;
   width: 64px;
   height: 64px;
   top: 20px;
-  x-shadow: 0 2px 5px #060606;
-  -webkit-box-shadow: 0 2px 5px #060606;
-  box-shadow: 0 2px 5px #060606;
   left: 10px;
+  padding: 3px;
+  border: 1px solid #d5cfbf;
+  background: #f5f3ed;
 
   position: absolute;
+}
+
+#comments li .avatar:hover {
+  -moz-box-shadow: 0 2px 5px #060606;
+  -webkit-box-shadow: 0 2px 5px #060606;
+  box-shadow: 0 2px 5px #060606;
 }
 
 #comments ul {

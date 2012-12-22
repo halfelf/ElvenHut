@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'digest/md5'
 
 class ElvenHut < Sinatra::Application
   def getCommentList currentCommentList, resultList
@@ -9,6 +10,10 @@ class ElvenHut < Sinatra::Application
     end
   end
 
+  def getAvatarURL email_addr
+    hash = Digest::MD5.hexdigest email_addr.downcase
+    "http://www.gravatar.com/avatar/#{hash}"
+  end
 =begin
   post %r{/archives/([0-9]+)/comment$} do
     article = Article.filter(:id => params[:captures].first).first

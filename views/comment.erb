@@ -18,7 +18,11 @@
               <div class="detailContent">
                 <a name="comment<%= comment.id%>"></a>
                 <div class="meta">
-                  <span class="author"><%= comment.author%></span>
+                <span class="author"><%= comment.author%></span>
+                <% if index != 0 then%>
+                <span class="say">said to</span>
+                <a href="#comment<%= comment.parent_id%>"><span class="author"><%=comment.parent.author%></span></a>
+              <%end%>
                   <a class="reply" href="#" title="Reply" onclick="showHide('commentForm_<%= comment.id %>'); return false;">Reply</a>
                   <a href="#comment<%= comment.id%>" class="time"><%= comment.updated_at.strftime("%B %d, %Y @ %I:%M %p")%></a>
                 </div>
@@ -53,7 +57,19 @@
                 </form>	
               </div>
             </div>
-            <img src="/css/img/user_comment.png" class="avatar" height="64" width="64">
+            <% if comment.website != "" then%>
+              <% if comment.email == "" then%>
+            <a href="<%=comment.website%>"><img src="/css/img/user_comment.png" class="avatar" height="64" width="64"></a>
+          <%else%>
+            <a href="<%=comment.website%>"><img src="<%= getAvatarURL comment.email%>" class="avatar" height="64" width="64"></a>
+          <%end %>
+        <%else%>
+          <% if comment.email != ""%>
+          <img src="<%= getAvatarURL comment.email%>" class="avatar" height="64" width="64">
+        <%else%>
+          <img src="/css/img/user_comment.png" class="avatar" height="64" width="64">
+        <%end%>
+          <%end%>
             </li>
             <% if index > 0 then%>
             </ul>
