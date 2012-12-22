@@ -87,7 +87,7 @@ comment input, comment textarea {
 
 comment textarea {		
   margin-right: 5%;
-  width: 100%; 
+  width: 98%; 
   height: 148px; 		 		
   font-size: 1em;
   -webkit-box-sizing: border-box;
@@ -99,7 +99,11 @@ comment input:hover, comment textarea:hover {
   background: #eee; 
 }
 
-comment input.submit { 	
+comment input.cancel {
+  margin-left: 30px;
+}
+
+comment input.submit, comment input.cancel{ 	
   width: 150px; 
   color: #eee; 
 /*  text-transform: uppercase; */
@@ -122,7 +126,7 @@ comment input.submit {
   background: -moz-linear-gradient(25% 75% 90deg,#6e6e6e, #4b5258);		
 } 
 
-comment input.submit:hover { 		
+comment input.submit:hover, input.cancel:hover { 		
   -webkit-box-shadow: 0px 0px 20px #555;
   -moz-box-shadow: 0px 0px 20px #aaa; 
   box-shadow: 0px 0px 20px #555;	
@@ -139,6 +143,7 @@ comment input.submit:hover {
 
 #comments li .detail {
   margin: 16px 0 0 90px;
+  overflow: hidden;
 }
 
 #comments a.reply {
@@ -199,4 +204,8 @@ text-shadow: 0 2px 2px #4b5258;
 
 #comments ul {
   margin: 0 0 0 90px;
+}
+
+.more {
+  display: none;
 }
