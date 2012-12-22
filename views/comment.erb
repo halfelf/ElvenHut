@@ -19,7 +19,6 @@
                 <a name="comment<%= comment.id%>"></a>
                 <div class="meta">
                   <span class="author"><%= comment.author%></span>
-                  <span id="reply">said to</span>
                   <a class="reply" href="#" title="Reply" onclick="showHide('commentForm_<%= comment.id %>'); return false;">Reply</a>
                   <a href="#comment<%= comment.id%>" class="time"><%= comment.updated_at.strftime("%B %d, %Y @ %I:%M %p")%></a>
                 </div>
