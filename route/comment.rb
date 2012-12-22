@@ -1,6 +1,15 @@
 # encoding: UTF-8
 
 class ElvenHut < Sinatra::Application
+  def getCommentList currentCommentList, resultList
+    currentCommentList.each do |comment|
+      resultList << comment
+      tempCommentList = comment.children
+      getCommentList tempCommentList, resultList
+    end
+  end
+
+=begin
   post %r{/archives/([0-9]+)/comment$} do
     article = Article.filter(:id => params[:captures].first).first
     not_found unless article
@@ -10,6 +19,7 @@ class ElvenHut < Sinatra::Application
     article.add_comment(comment)
     redirect "/archives/#{article.id}"
   end
+=end
 
   post '/archives/*/comment/r*' do
     p params[:splat]
@@ -17,9 +27,6 @@ class ElvenHut < Sinatra::Application
     not_found unless article
     comment = Comment.new :author => params[:name], :comment => params[:message], :email => params[:email], :website => params[:website], :parent_id => params[:splat][1].to_i, :updated_at => Time.now
     comment.save
-
-    comment_parent = Comment.filter(:id => params[:splat][1].to_i).first
-    not_found unless article
 
     article.add_comment(comment)
     redirect "/archives/#{article.id}"
