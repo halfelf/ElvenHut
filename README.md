@@ -5,13 +5,13 @@ A blog constructor based on Sinatra for building tech posts site.
 
 ---
 
-##Browser support
+#Browser support
 * Tested with Safari and Firefox on Mountain Lion. All of them is the newest version.
 * Evil and OLD browsers (like IE6) will never be supported.
 
 ---
 
-##Setup
+#Setup
 1. Duplicate the config template **config/config.yaml** and rename it **config_USERNAME.yaml** (which USERNAME is your account name in unix/linux). 
 2. Rewrite **config/config_USERNAME.yaml**, specially the database name(default: elvenhut\_database), username and password.
 3. ElvenHub can only support **mysql** now, create database in mysql:
