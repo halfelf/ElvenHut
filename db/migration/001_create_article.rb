@@ -3,6 +3,7 @@ require 'sequel'
 require 'mysql2'
 
 Sequel.migration do
+  transaction
   change do
     create_table(:articles) do
       primary_key :id

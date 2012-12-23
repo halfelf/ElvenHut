@@ -14,8 +14,8 @@
             <ul class="children">
             <% end %>
             <li data-comment="<%= comment.id%>">
-            <div class="detail">
-              <div class="detailContent">
+            <div class="detail" >
+              <div class="detailContent"  <%if index != 0%>style="padding-left:0px"<%end%>>
                 <a name="comment<%= comment.id%>"></a>
                 <div class="meta">
                 <span class="author"><%= comment.author%></span>
@@ -59,15 +59,15 @@
             </div>
             <% if comment.website != "" then%>
               <% if comment.email == "" then%>
-            <a href="<%=comment.website%>"><img src="/css/img/user_comment.png" class="avatar" height="64" width="64"></a>
+                <a href="<%=comment.website%>"><img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
           <%else%>
-            <a href="<%=comment.website%>"><img src="<%= getAvatarURL comment.email%>" class="avatar" height="64" width="64"></a>
+            <a href="<%=comment.website%>"><img src="<%= getAvatarURL comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
           <%end %>
         <%else%>
           <% if comment.email != ""%>
-          <img src="<%= getAvatarURL comment.email%>" class="avatar" height="64" width="64">
+          <img src="<%= getAvatarURL comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>>
         <%else%>
-          <img src="/css/img/user_comment.png" class="avatar" height="64" width="64">
+          <img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>>
         <%end%>
           <%end%>
             </li>

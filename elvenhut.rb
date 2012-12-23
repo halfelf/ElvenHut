@@ -33,7 +33,7 @@ class ElvenHut < Sinatra::Application
     Social = config_struct["social"].to_struct
     Setting = config_struct["basic_setting"].to_struct
 
-    Sequel.connect(:adapter => Database.adapter, :user => Database.user, :host => Database.host, :database => Database.database, :password => Database.passwd.to_s);
+    Sequel.connect(:adapter => Database.adapter, :user => Database.user, :host => Database.host, :database => Database.database, :password => Database.passwd.to_s, :encoding => 'utf8');
   end
 
   use Rack::Session::Pool, :expire_after => 2592000

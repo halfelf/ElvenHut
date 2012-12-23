@@ -135,7 +135,7 @@ comment input.submit:hover, input.cancel:hover {
   cursor:  pointer; 
 } 		
 
-#comments ol, ul, li{
+#comments ol, #comments ul, #comments li{
   list-style:none;
 }
 
@@ -161,7 +161,7 @@ text-shadow: 0 2px 2px #4b5258;
 }
 
 #comments .detailContent {
-  padding: 20px 20px 10px 8px;
+  padding: 16px 20px 10px 8px;
   position: relative;
   /*
   -webkit-transition-property: background-color;
@@ -197,8 +197,6 @@ text-shadow: 0 2px 2px #4b5258;
 }
 
 #comments li .avatar {
-  width: 64px;
-  height: 64px;
   top: 20px;
   left: 10px;
   padding: 3px;
