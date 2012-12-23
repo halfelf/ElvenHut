@@ -1,4 +1,4 @@
-views/archives/
+views/archives/*.md
 .DS_Store
 *.*~
 **/*.swp
