@@ -1,12 +1,20 @@
 # encoding： UTF-8
 
 require "sinatra/base"
-require "rdiscount"
+require "redcarpet"
 require "erb"
 require "sequel"
 
-Sinatra::Base.set :markdown, :layout_engine => :erb
+Sinatra::Base.set :markdown, 
+                  :autolink => true,
+                  :fenced_code_blocks => true, 
+                  :strikethrough => true,
+                  :superscript => true,
+                  :layout_engine => :erb
 class ElvenHut < Sinatra::Application
+
+  Tilt.register Tilt::RedcarpetTemplate::Redcarpet2, 'markdown', 'mkd', 'md'
+
   set :root, File.dirname(__FILE__)
   set :view_path => root + "/views/"
   set :public_path => root + "/public/"

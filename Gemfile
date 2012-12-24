@@ -2,9 +2,9 @@
 source "http://ruby.taobao.org"
 
 gem 'sinatra'
-gem 'rdiscount'
 gem 'rake'
 gem 'mysql2'
 gem 'sequel'
 gem 'rack-test'
 gem 'builder'
+gem 'redcarpet'

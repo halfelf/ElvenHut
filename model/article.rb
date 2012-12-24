@@ -1,6 +1,6 @@
 #encoding=utf-8
 require "sequel"
-require "rdiscount"
+require "redcarpet"
 
 class Article < Sequel::Model
   plugin :schema
@@ -15,7 +15,11 @@ class Article < Sequel::Model
 
   def full_text
     # return the whole text in html format for rss feed
-    @md = RDiscount.new(File.read( "views/archives/#{self.id}.md"  ))
-    @md.to_html
+    @render = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+                                      :autolink => true,
+                                      :fenced_code_blocks => true,
+                                      :strikethrough => true,
+                                      :superscript => true)
+    @render.render File.read("views/archives/#{self.id}.md")
   end
 end

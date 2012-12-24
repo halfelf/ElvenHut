@@ -1,6 +1,5 @@
 #encoding=utf-8
 require "sequel"
-require "rdiscount"
 
 class Tag < Sequel::Model
   plugin :schema
