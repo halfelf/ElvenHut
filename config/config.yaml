@@ -19,4 +19,6 @@ basic_setting:
     code_style: default
     post_each_page: -1
     show_comment: yes
+    use_disqus: no
+    disqus_shortname: 
     show_author: yes

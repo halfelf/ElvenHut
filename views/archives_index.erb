@@ -20,7 +20,17 @@
 				<% end %>
 			</li>
 			<li>
-				<a href="/thispost/comments">0 comments</a>
+				<% if !Setting.use_disqus then%>
+					<a href="/archives/<%= article.id%>">
+					<% if article.comments.size == 0 then %>
+						No Comment
+					<% elsif article.comments.size == 1 then %>
+						1 Comment
+					<% else %>
+						<%= article.comments.size%> Comments
+      				<% end %>
+      				</a>
+      			<%end%>
 			</li>
 		</ul>
 	</aside>
