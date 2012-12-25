@@ -1,4 +1,5 @@
-# encoding: UTF-8
+# encoding: utf-8
+
 require 'digest/md5'
 
 class ElvenHut < Sinatra::Application

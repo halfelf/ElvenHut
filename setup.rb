@@ -1,5 +1,5 @@
 #!ruby -w
-#encoding=utf-8
+# encoding: utf-8
 
 require 'yaml'
 
