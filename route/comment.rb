@@ -3,29 +3,18 @@
 require 'digest/md5'
 
 class ElvenHut < Sinatra::Application
-  def getCommentList currentCommentList, resultList
-    currentCommentList.each do |comment|
-      resultList << comment
-      tempCommentList = comment.children
-      getCommentList tempCommentList, resultList
+  def get_comment_list cur_comment_list, result_list
+    cur_comment_list.each do |comment|
+      result_list << comment
+      temp_comment_list = comment.children
+      get_comment_list temp_comment_list, result_list
     end
   end
 
-  def getAvatarURL email_addr
+  def get_avatar_url email_addr
     hash = Digest::MD5.hexdigest email_addr.downcase
     "http://www.gravatar.com/avatar/#{hash}"
   end
-=begin
-  post %r{/archives/([0-9]+)/comment$} do
-    article = Article.filter(:id => params[:captures].first).first
-    not_found unless article
-    comment = Comment.new :author => params[:name], :comment => params[:message], :email => params[:email], :website => params[:website], :parent_id => -1, :updated_at => Time.now
-    comment.save
-
-    article.add_comment(comment)
-    redirect "/archives/#{article.id}"
-  end
-=end
 
   post '/archives/*/comment/r*' do
     p params[:splat]

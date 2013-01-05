@@ -8,9 +8,9 @@
   <ol id="comments">
     <% @article.comments.each do |sub_comment| %>
       <% if sub_comment.parent_id == -1 then%>
-        <% commentList = Array.new%>
-        <% getCommentList [sub_comment], commentList%>
-        <% commentList.sort_by{|obj| obj.updated_at}.each_with_index do |comment, index|%>
+        <% comment_list = Array.new%>
+        <% get_comment_list [sub_comment], comment_list%>
+        <% comment_list.sort_by{|obj| obj.updated_at}.each_with_index do |comment, index|%>
           <% if index > 0 then%>
             <ul class="children">
             <% end %>
@@ -62,11 +62,11 @@
               <% if comment.email == "" then%>
                 <a href="<%=comment.website%>"><img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
           <%else%>
-            <a href="<%=comment.website%>"><img src="<%= getAvatarURL comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
+            <a href="<%=comment.website%>"><img src="<%= get_avatar_url comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
           <%end %>
         <%else%>
           <% if comment.email != ""%>
-          <img src="<%= getAvatarURL comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>>
+          <img src="<%= get_avatar_url comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>>
         <%else%>
           <img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>>
         <%end%>
