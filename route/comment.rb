@@ -16,14 +16,35 @@ class ElvenHut < Sinatra::Application
     "http://www.gravatar.com/avatar/#{hash}"
   end
 
+  def process_website url
+    if url =~ /https*:\/\// then
+      url
+    else
+      url = "http://" + url
+    end
+  end
+
   post '/archives/*/comment/r*' do
-    p params[:splat]
     article = Article.filter(:id => params[:splat][0].to_i).first
     not_found unless article
-    comment = Comment.new :author => params[:name], :comment => params[:message], :email => params[:email], :website => params[:website], :parent_id => params[:splat][1].to_i, :updated_at => Time.now
+    comment = Comment.new :author => params[:name], :comment => params[:message], :email => params[:email], :website => process_website(params[:website]), :parent_id => params[:splat][1].to_i, :updated_at => Time.now
     comment.save
 
     article.add_comment(comment)
+    redirect "/archives/#{article.id}"
+  end
+
+  post '/archives/*/comment/d*' do
+    article = Article.filter(:id => params[:splat][0].to_i).first
+    not_found unless article
+    comment = Comment.filter(:id => params[:splat][1].to_i).first
+    article.remove_comment comment
+    sub_comments = Array.new
+    get_comment_list [comment], sub_comments
+
+    sub_comments.each do |sub_comment|
+      sub_comment.destroy
+    end
     redirect "/archives/#{article.id}"
   end
 end

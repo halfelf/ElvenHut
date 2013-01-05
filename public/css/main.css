@@ -123,7 +123,6 @@ body {
 
 /* footer styles*/
 footer {
-	margin-top: -106px;
 	font-size: 1em;
 	height: 65px;
 	overflow: hidden;
@@ -273,7 +272,6 @@ header[role="banner"] {
 	font-size: 1em;
 	line-height: 1.6;
 	margin-top: 15px;
-	padding-bottom: 130px;
 }
 
 #content article {

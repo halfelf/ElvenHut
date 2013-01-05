@@ -1,116 +1,130 @@
 <% if !Setting.use_disqus then %>
-<script src="/javascripts/comment.js"></script>
-<comment>
-<link rel="stylesheet" type="text/css" href="/css/comment.css"/>
+  <script src="/javascripts/comment.js"></script>
+  <comment>
+  <link rel="stylesheet" type="text/css" href="/css/comment.css"/>
 
-<% if @article.comments.size != 0%>
-  <h2>Comments</h2>
-  <ol id="comments">
-    <% @article.comments.each do |sub_comment| %>
-      <% if sub_comment.parent_id == -1 then%>
-        <% comment_list = Array.new%>
-        <% get_comment_list [sub_comment], comment_list%>
-        <% comment_list.sort_by{|obj| obj.updated_at}.each_with_index do |comment, index|%>
-          <% if index > 0 then%>
-            <ul class="children">
-            <% end %>
-            <li data-comment="<%= comment.id%>">
-            <div class="detail" >
-              <div class="detailContent"  <%if index != 0%>style="padding-left:0px"<%end%>>
-                <a name="comment<%= comment.id%>"></a>
-                <div class="meta">
-                <span class="author"><%= comment.author%></span>
-                <% if index != 0 then%>
-                <span class="say">said to</span>
-                <a href="#comment<%= comment.parent_id%>"><span class="author"><%=comment.parent.author%></span></a>
-              <%end%>
-                  <a class="reply" href="#" title="Reply" onclick="showHide('commentForm_<%= comment.id %>'); return false;">Reply</a>
-                  <a href="#comment<%= comment.id%>" class="time"><%= comment.updated_at.strftime("%B %d, %Y @ %I:%M %p")%></a>
-                </div>
-                <p><%= comment.comment%></p>
-              </div>
-
-              <div id="commentForm_<%= comment.id%>" class="more">
-                <form action="<%= url + "/comment/r#{comment.id}"%>" method="post" name="comment"> 
-                  <fieldset id="user-details">	
-
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" value="" placeholder="Required" /> 
-
-                    <label for="email">Email:</label> 
-                    <input type="email" name="email" value="" placeholder="Optional" /> 
-
-                    <label for="website">Website:</label> 
-                    <input type="url" name="website" value="" placeholder="Optional" /> 
-
-                  </fieldset><!--end user-details-->
-
-                  <fieldset id="user-message">
-
-                    <label for="message">Your Message:</label> 
-                    <textarea name="message" rows="0" cols="0"></textarea> 
-
-                    <input type="submit" value="Submit Message" name="submit" class="submit" />		
-                    <input value="Cancel" class="cancel" type="button" onclick="hideHide('commentForm_<%=comment.id%>');return false;" />		
-
-                  </fieldset><!-- end user-message -->
-
-                </form>	
-              </div>
-            </div>
-            <% if comment.website != "" then%>
-              <% if comment.email == "" then%>
-                <a href="<%=comment.website%>"><img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
-          <%else%>
-            <a href="<%=comment.website%>"><img src="<%= get_avatar_url comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
-          <%end %>
-        <%else%>
-          <% if comment.email != ""%>
-          <img src="<%= get_avatar_url comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>>
-        <%else%>
-          <img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>>
-        <%end%>
-          <%end%>
-            </li>
+  <% if @article.comments.size != 0%>
+    <h2>Comments</h2>
+    <ol id="comments">
+      <% @article.comments.each do |sub_comment| %>
+        <% if sub_comment.parent_id == -1 then%>
+          <% comment_list = Array.new%>
+          <% get_comment_list [sub_comment], comment_list%>
+          <% comment_list.sort_by{|obj| obj.updated_at}.each_with_index do |comment, index|%>
             <% if index > 0 then%>
-            </ul>
-          <% end %>
-        <%end%>
-      <% end%>
-    <% end %>
-  </ol>
-<% end %>
+              <ul class="children">
+              <% end %>
+              <li data-comment="<%= comment.id%>">
+              <div class="detail" >
+                <div class="detailContent"  <%if index != 0%>style="padding-left:0px"<%end%>>
+                  <a name="comment<%= comment.id%>"></a>
+                  <div class="meta">
+                    <span class="author"><%= comment.author%></span>
+                    <% if index != 0 then%>
+                      <span class="say">said to</span>
+                      <a href="#comment<%= comment.parent_id%>"><span class="author"><%=comment.parent.author%></span></a>
+                    <%end%>
+                    <a class="reply" href="#" title="Reply" onclick="showHide('commentForm_<%= comment.id %>'); return false;">Reply</a>
+                    <% if admin? then%>
+                    <a class="delete_comment" href="#" title="Delete" onclick="showHide('deleteForm_<%= comment.id %>'); return false;">Delete</a>
+                    <% end%>
+                    <a href="#comment<%= comment.id%>" class="time"><%= comment.updated_at.strftime("%B %d, %Y @ %I:%M %p")%></a>
+                  </div>
+                  <p><%= comment.comment%></p>
+                </div>
 
-<div id="commentForm">
-<form action="<%= url + "/comment/r-1"%>" method="post" name="comment"> 
+                <div id="deleteForm_<%= comment.id%>" class="more">
+                  <form action="<%= url + "/comment/d#{comment.id}"%>" method="post" name="delete_comment">
+                    <fieldset id="delete-verify">
+                      <label for"verify">Delete this comment ?</label>
+                      <input type="submit" value="Delete Comment" class="delete" />
+                      <input value="Cancel" class="cancel" type="button" onclick="hideHide('deleteForm_<%= comment.id%>'); return false;" />
+                    </fieldset>
+                  </form>
+                </div>
+                <div id="commentForm_<%= comment.id%>" class="more">
+                  <form action="<%= url + "/comment/r#{comment.id}"%>" method="post" name="comment"> 
+                    <fieldset id="user-details">	
 
-  <h2>Get In Touch With Us ...</h2>
+                      <label for="name">Name:</label>
+                      <input type="text" name="name" value="" placeholder="Required" /> 
 
-  <fieldset id="user-details">	
+                      <label for="email">Email:</label> 
+                      <input type="email" name="email" value="" placeholder="Optional" /> 
 
-    <label for="name">Name:</label>
-    <input type="text" name="name" value="" placeholder="Required" /> 
+                      <label for="website">Website:</label> 
+                      <input type="url" name="website" value="" placeholder="Optional" /> 
 
-    <label for="email">Email:</label> 
-    <input type="email" name="email" value="" placeholder="Optional" /> 
+                    </fieldset><!--end user-details-->
 
-    <label for="website">Website:</label> 
-    <input type="url" name="website" value="" placeholder="Optional" /> 
+                    <fieldset id="user-message">
 
-  </fieldset><!--end user-details-->
+                      <label for="message">Your Message:</label> 
+                      <textarea name="message" rows="0" cols="0"></textarea> 
 
-  <fieldset id="user-message">
+                      <input type="submit" value="Submit Message" name="submit" class="submit" />		
+                      <input value="Cancel" class="cancel" type="button" onclick="hideHide('commentForm_<%=comment.id%>');return false;" />		
 
-    <label for="message">Your Message:</label> 
-    <textarea name="message" rows="0" cols="0"></textarea> 
+                    </fieldset><!-- end user-message -->
 
-    <input type="submit" value="Submit Message" name="submit" class="submit" />		
+                  </form>	
+                </div>
+              </div>
+              <% if comment.website != "" then%>
+                <% if comment.email == "" then%>
+                  <a href="<%=comment.website%>"><img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
+                <%else%>
+                  <a href="<%=comment.website%>"><img src="<%= get_avatar_url comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
+                <%end %>
+              <%else%>
+                <% if comment.email != ""%>
+                  <img src="<%= get_avatar_url comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>>
+                <%else%>
+                  <img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>>
+                <%end%>
+              <%end%>
+              </li>
+              <% if index > 0 then%>
+              </ul>
+            <% end %>
+          <%end%>
+        <% end%>
+      <% end %>
+    </ol>
+  <% end %>
 
-  </fieldset><!-- end user-message -->
+  <div id="commentForm">
+    <form action="<%= url + "/comment/r-1"%>" method="post" name="comment"> 
 
-</form>	
-</div>
-</comment>
+      <h2>Get In Touch With Us ...</h2>
+
+      <fieldset id="user-details">	
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="" placeholder="Required" /> 
+
+        <label for="email">Email:</label> 
+        <input type="email" name="email" value="" placeholder="Optional" /> 
+
+        <label for="website">Website:</label> 
+        <input type="url" name="website" value="" placeholder="Optional" /> 
+
+      </fieldset><!--end user-details-->
+
+      <fieldset id="user-message">
+
+        <label for="message">Your Message:</label> 
+        <textarea name="message" rows="0" cols="0"></textarea> 
+
+        <input type="submit" value="Submit Message" name="submit" class="submit" />		
+
+      </fieldset><!-- end user-message -->
+
+    </form>	
+  </div>
+  <div class="clearfix">
+  </div>
+  </comment>
 <%else%>
   <div id="disqus_thread"></div>
   <script type="text/javascript">
@@ -123,8 +137,8 @@
    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ </script>
+ <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 <%end%>

@@ -15,7 +15,11 @@ comment h2 {
   color: #555;
   font-size: 1.75em;
   font-weight: 300;
-  margin: 0 0 20px 0; 
+/*  margin: 0 0 20px 0; */
+}
+
+comment #commentForm h2 {
+  margin-bottom: 10px;
 }
 
 comment label {	
@@ -27,8 +31,8 @@ comment label {
 comment form { 
   float: left;
 /*  border: 1px solid #ddd; */
-  padding: 30px 0 20px 0; 
-  margin-bottom: 30px;
+  padding: 15px 0 0 0; 
+/*  margin-bottom: 30px;*/
   width: 100%;
 /*  margin: 75px 0 0 0; */
 /*  background: #fff;*/
@@ -51,6 +55,20 @@ comment form {
   box-shadow:0px 0 50px #ccc;		 		
   */
 }	
+
+#commentForm {
+  margin: 10px 0 45px 0;
+}
+
+#commentForm:after
+{
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  line-height: 0;  
+}
 
 comment fieldset { border: none; }
 
@@ -105,7 +123,11 @@ comment input.cancel {
   margin-left: 30px;
 }
 
-comment input.submit, comment input.cancel{ 	
+comment input.delete {
+  margin-left: 60px;
+}
+
+comment input.submit, comment input.cancel, comment input.delete{ 	
   width: 150px; 
   color: #eee; 
 /*  text-transform: uppercase; */
@@ -128,7 +150,7 @@ comment input.submit, comment input.cancel{
   background: -moz-linear-gradient(25% 75% 90deg,#6e6e6e, #4b5258);		
 } 
 
-comment input.submit:hover, input.cancel:hover { 		
+comment input.submit:hover, input.cancel:hover, comment input.delete:hover { 		
   -webkit-box-shadow: 0px 0px 20px #555;
   -moz-box-shadow: 0px 0px 20px #aaa; 
   box-shadow: 0px 0px 20px #555;	
@@ -144,16 +166,20 @@ comment input.submit:hover, input.cancel:hover {
 }
 
 #comments li .detail {
-  margin: 16px 0 0 90px;
+  margin: 0 0 0 90px;
   overflow: hidden;
 }
 
-#comments a.reply {
+#comments a.reply, #comments a.delete_comment {
   float:right;
   color: #6e6e6e;
   font-weight: 400;
   font-size: 0.85em;
   margin-top: 0.1em;
+}
+
+#comments a.delete_comment {
+  margin-right: 16px;
 }
 
 #comments a:hover {
@@ -219,3 +245,4 @@ text-shadow: 0 2px 2px #4b5258;
 .more {
   display: none;
 }
+
