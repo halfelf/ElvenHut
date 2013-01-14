@@ -3,6 +3,7 @@
 require 'digest/md5'
 
 class ElvenHut < Sinatra::Application
+
   def get_comment_list cur_comment_list, result_list
     cur_comment_list.each do |comment|
       result_list << comment
@@ -27,10 +28,12 @@ class ElvenHut < Sinatra::Application
   post '/archives/*/comment/r*' do
     article = Article.filter(:id => params[:splat][0].to_i).first
     not_found unless article
-    comment = Comment.new :author => params[:name], :comment => params[:message], :email => params[:email], :website => process_website(params[:website]), :parent_id => params[:splat][1].to_i, :updated_at => Time.now
-    comment.save
+    comment = Comment.new :author => params[:name], :comment => params[:message], :email => params[:email], :website => process_website(params[:website]), :parent_id => params[:splat][1].to_i, :updated_at => Time.now, :ip => request.ip
 
-    article.add_comment(comment)
+    if !comment.spam? then
+      comment.save
+      article.add_comment(comment)
+    end
     redirect "/archives/#{article.id}"
   end
 

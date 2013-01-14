@@ -4,6 +4,7 @@ require "sinatra/base"
 require "redcarpet"
 require "erb"
 require "sequel"
+require "rakismet"
 
 Sinatra::Base.set :markdown, 
                   :autolink => true,
@@ -22,6 +23,7 @@ class ElvenHut < Sinatra::Application
 
   layout 'background'
 
+  include Rack::Utils
   require_relative "helpers/init"
 
   configure do
@@ -42,6 +44,9 @@ class ElvenHut < Sinatra::Application
     Setting = config_struct["basic_setting"].to_struct
 
     Sequel.connect(:adapter => Database.adapter, :user => Database.user, :host => Database.host, :database => Database.database, :password => Database.passwd.to_s, :encoding => 'utf8');
+    Rakismet.key = '0366418d6ff9'
+    Rakismet.url = 'localhost'
+    Rakismet.host = "rest.akismet.com"
   end
 
   use Rack::Session::Pool, :expire_after => 2592000

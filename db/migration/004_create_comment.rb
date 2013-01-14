@@ -15,8 +15,7 @@ Sequel.migration do
       String :website, :defalut => ""
       Integer :parent_id
       Integer :children_id
-      Integer :lft
-      Integer :rgt
+      String :ip
       timestamp :updated_at, :null => false
     end
   end
