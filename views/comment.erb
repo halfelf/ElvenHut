@@ -19,10 +19,10 @@
                 <div class="detailContent"  <%if index != 0%>style="padding-left:0px"<%end%>>
                   <a name="comment<%= comment.id%>"></a>
                   <div class="meta">
-                    <span class="author"><%= comment.author%></span>
+                    <span class="author"><%=escape_html comment.author%></span>
                     <% if index != 0 then%>
                       <span class="say">said to</span>
-                      <a href="#comment<%= comment.parent_id%>"><span class="author"><%=comment.parent.author%></span></a>
+                      <a href="#comment<%= comment.parent_id%>"><span class="author"><%=escape_html comment.parent.author%></span></a>
                     <%end%>
                     <a class="reply" href="#" title="Reply" onclick="showHide('commentForm_<%= comment.id %>'); return false;">Reply</a>
                     <% if admin? then%>
@@ -30,7 +30,7 @@
                     <% end%>
                     <a href="#comment<%= comment.id%>" class="time"><%= comment.updated_at.strftime("%B %d, %Y @ %I:%M %p")%></a>
                   </div>
-                  <p><%= comment.comment%></p>
+                  <p><%= escape_html comment.comment%></p>
                 </div>
 
                 <div id="deleteForm_<%= comment.id%>" class="more">
@@ -72,9 +72,9 @@
               </div>
               <% if comment.website != "" then%>
                 <% if comment.email == "" then%>
-                  <a href="<%=comment.website%>"><img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
+                  <a href="<%=escape_html comment.website%>"><img src="/css/img/user_comment.png" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
                 <%else%>
-                  <a href="<%=comment.website%>"><img src="<%= get_avatar_url comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
+                  <a href="<%=escape_html comment.website%>"><img src="<%= get_avatar_url comment.email%>" class="avatar" <%if index == 0 then%>height="56" width="56" <%else%> height="44" width="44"<%end%>></a>
                 <%end %>
               <%else%>
                 <% if comment.email != ""%>
