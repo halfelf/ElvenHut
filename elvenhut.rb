@@ -42,11 +42,14 @@ class ElvenHut < Sinatra::Application
     Blog = config_struct["blog"].to_struct
     Social = config_struct["social"].to_struct
     Setting = config_struct["basic_setting"].to_struct
+    Rakismet_Settings = config_struct["rakismet"].to_struct
 
     Sequel.connect(:adapter => Database.adapter, :user => Database.user, :host => Database.host, :database => Database.database, :password => Database.passwd.to_s, :encoding => 'utf8');
-    Rakismet.key = '0366418d6ff9'
-    Rakismet.url = 'localhost'
-    Rakismet.host = "rest.akismet.com"
+    if Rakismet_Settings.use then
+      Rakismet.key = Rakismet_Settings.key
+      Rakismet.url = Rakismet_Settings.url
+      Rakismet.host = Rakismet_Settings.host
+    end
   end
 
   use Rack::Session::Pool, :expire_after => 2592000

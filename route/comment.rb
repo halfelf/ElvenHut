@@ -30,7 +30,12 @@ class ElvenHut < Sinatra::Application
     not_found unless article
     comment = Comment.new :author => params[:name], :comment => params[:message], :email => params[:email], :website => process_website(params[:website]), :parent_id => params[:splat][1].to_i, :updated_at => Time.now, :ip => request.ip
 
-    if !comment.spam? then
+    if Rakismet_Settings.use then
+      if !comment.spam? then
+        comment.save
+        article.add_comment(comment)
+      end
+    else
       comment.save
       article.add_comment(comment)
     end

@@ -21,4 +21,8 @@ basic_setting:
     show_comment: yes
     use_disqus: no
     disqus_shortname: 
-    show_author: yes
+rakismet:
+    use: no
+    key:    #required. signup at http://akismet.com to get a key.
+    url:    #required. may same as host
+    host: rest.akismet.com  #as default
