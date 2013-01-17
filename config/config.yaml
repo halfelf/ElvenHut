@@ -18,7 +18,7 @@ social:
 basic_setting:
     # <code> style options: public/css/highlight/(.*).css
     code_style: default
-    reply_notificate: yes  # send email when got a reply
+    reply_notificate: yes  # send email when got a reply. [Note] Make sure your postfix(or others smtp server is running).
     post_each_page: -1
     show_comment: yes
     use_disqus: no
