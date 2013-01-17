@@ -9,3 +9,4 @@ gem 'rack-test'
 gem 'builder'
 gem 'redcarpet'
 gem 'rakismet', "~> 1.3.0"
+gem 'mail'

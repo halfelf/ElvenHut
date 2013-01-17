@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 module BasicMethods
+
   def current_folder?(path="")
     'class="active"' if request.path_info =~ Regexp.new(path)
   end
@@ -12,6 +13,7 @@ module BasicMethods
   def parse_date origin_date
     origin_date.strftime("%b %d, %Y")
   end
+
 
   class ::Hash
     def to_struct struct_name = nil

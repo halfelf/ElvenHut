@@ -357,7 +357,8 @@ article::after {
 }
 
 ::selection {
- 	background: #fa453c;
+/* 	background: #fa453c;*/
+  background: #4b5258;
  	color: #fff;
  	text-shadow: none;
 }
@@ -472,10 +473,9 @@ input, textarea {
 	color: #f5efe0;
 	width: 100px;
 	background-color: #4b5258;
-	padding: auto;
 }
 
-#login .button:hover, #edit_post .button:hover, .button:hover{
+#login .button:hover, #edit_post .button:hover, .button:hover {
 	background-color: #fa453c;
 }
 

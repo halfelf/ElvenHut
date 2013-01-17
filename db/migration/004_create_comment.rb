@@ -10,7 +10,7 @@ Sequel.migration do
       primary_key :id
       foreign_key :article_id
       String :author, :null => false
-      String :comment, :null => false, :limit => 1024
+      String :comment, :null => false, :limit => 4096
       String :email
       String :website, :defalut => ""
       Integer :parent_id

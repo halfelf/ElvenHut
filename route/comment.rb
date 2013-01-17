@@ -25,6 +25,86 @@ class ElvenHut < Sinatra::Application
     end
   end
 
+  def comment_or_article opts
+    msg = "<a href=\"#{opts[:url]}\"><b>#{opts[:title]}</b></a>.\n"
+    if opts[:username] != Blog.admin_name
+      msg = "<a href=\"#{opts[:comment_url]}\">your comment </a> at <a href=\"#{opts[:url]}\">#{opts[:url]}</a>\n"
+    else
+      opts[:subject] = "[#{Blog.url}] #{opts[:target_username]} replied the article"
+    end
+
+    msg << %Q{Here is the comment cotent:
+  <pre>
+    #{escape_html opts[:comment_content]}
+  </pre>
+}
+  end
+
+  def send_email(opts={})
+    opts[:server]      ||= 'localhost'
+    opts[:from]        ||= "notifications@#{Blog.url}"
+    opts[:from_alias]  ||= "#{Blog.url} Notifications"
+    opts[:subject]     ||= "[#{Blog.url}] #{opts[:target_username]} reply the comment posted by you"
+
+    msg = %Q{Hi, #{opts[:username]}:
+
+  <b>#{opts[:target_username]}</b> reply #{comment_or_article opts}
+
+  <b>Please donnot reply this email.</b>
+
+Best,
+From #{Blog.url}
+    }
+
+    mail = Mail.new do
+      from  opts[:from]
+      to    opts[:to]
+      subject opts[:subject]
+      html_part do
+        content_type 'text/html; charset=UTF-8'
+        body msg.gsub("\n", '<br />')
+      end
+    end
+
+    mail.delivery_method :sendmail
+    mail.deliver
+  end
+
+  def is_email_availabe email_addr
+    is_validate = false
+    begin
+      addr = Mail::Address.new(email_addr)
+      is_validate = addr.domain && addr.address == email_addr
+      t = addr.__send__(:tree)
+      is_validate &&= (t.domain.dot_atom_text.elements.size > 1)
+    rescue Exception => e
+      is_validate = false
+    end
+    is_validate
+  end
+
+  def mail_send_thread comment, url, title
+    opts = Hash.new
+    if comment.parent_id == -1 then
+      opts[:to] = Blog.email
+      opts[:username] = Blog.admin_name
+    else
+      comment_parent = Comment.filter(:id => comment.parent_id).first
+      opts[:to] = comment_parent.email
+      opts[:username] = comment_parent.author
+      opts[:comment_url] = "#{url}#comment#{comment_parent.id.to_s}"
+    end
+    if is_email_availabe opts[:to] then
+      opts[:comment_content] = comment.comment
+      opts[:title] = title
+      opts[:url] = url
+      opts[:target_username] = comment.author
+      send_email opts
+    else
+      puts "unvalidate email address : \"#{opts[:to]}\""
+    end
+  end
+
   post '/archives/*/comment/r*' do
     article = Article.filter(:id => params[:splat][0].to_i).first
     not_found unless article
@@ -34,10 +114,12 @@ class ElvenHut < Sinatra::Application
       if !comment.spam? then
         comment.save
         article.add_comment(comment)
+        Thread.new {mail_send_thread(comment, "http://#{Blog.url}/archives/#{article.id.to_s}", article.title)} if Setting.reply_notificate
       end
     else
       comment.save
       article.add_comment(comment)
+      Thread.new {mail_send_thread(comment, "http://#{Blog.url}/archives/#{article.id.to_s}", article.title)}
     end
     redirect "/archives/#{article.id}"
   end

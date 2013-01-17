@@ -11,12 +11,14 @@ blog:
     site_description: A blog engine for personal using
     admin_name: admin
     admin_passwd: admin
+    email: 
 social:
     gplus:
     github: https://github.com/halfelf/ElvenHut
 basic_setting:
     # <code> style options: public/css/highlight/(.*).css
     code_style: default
+    reply_notificate: yes  # send email when got a reply
     post_each_page: -1
     show_comment: yes
     use_disqus: no

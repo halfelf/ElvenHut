@@ -5,6 +5,7 @@ require "redcarpet"
 require "erb"
 require "sequel"
 require "rakismet"
+require "mail"
 
 Sinatra::Base.set :markdown, 
                   :autolink => true,
