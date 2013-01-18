@@ -21,7 +21,7 @@ class ElvenHut < Sinatra::Application
     if url =~ /https*:\/\// then
       url
     else
-      url = "http://" + url
+      url = "http://" << url
     end
   end
 
@@ -70,17 +70,16 @@ From #{Blog.url}
     mail.deliver
   end
 
-  def is_email_availabe email_addr
-    is_validate = false
+  def is_email_available email_addr
+    is_valid = false
     begin
       addr = Mail::Address.new(email_addr)
-      is_validate = addr.domain && addr.address == email_addr
+      is_valid = addr.domain && addr.address == email_addr
       t = addr.__send__(:tree)
-      is_validate &&= (t.domain.dot_atom_text.elements.size > 1)
+      is_valid &&= (t.domain.dot_atom_text.elements.size > 1)
     rescue Exception => e
-      is_validate = false
+      is_valid = false
     end
-    is_validate
   end
 
   def mail_send_thread comment, url, title
@@ -94,14 +93,14 @@ From #{Blog.url}
       opts[:username] = comment_parent.author
       opts[:comment_url] = "#{url}#comment#{comment_parent.id.to_s}"
     end
-    if is_email_availabe opts[:to] then
+    if is_email_available opts[:to] then
       opts[:comment_content] = comment.comment
       opts[:title] = title
       opts[:url] = url
       opts[:target_username] = comment.author
       send_email opts
     else
-      puts "unvalidate email address : \"#{opts[:to]}\""
+      puts "invalid email address : \"#{opts[:to]}\""
     end
   end
 
