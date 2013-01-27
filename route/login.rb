@@ -2,7 +2,7 @@
 
 class ElvenHut < Sinatra::Application
 
-  before %r{(/new_post)|(/[0-9]*/edit)|(/[0-9]*/delete)} do
+  before %r{(/new_post)|(/[0-9]*/edit)|(/[0-9]*/delete)|(import_.*)|(/archives/[0-9]*/comment/d.*)} do
     redirect "/not_auth" if !admin?
   end
 

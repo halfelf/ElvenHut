@@ -6,6 +6,7 @@ require "erb"
 require "sequel"
 require "rakismet"
 require "mail"
+require "fileutils"
 
 Sinatra::Base.set :markdown, 
                   :autolink => true,

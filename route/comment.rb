@@ -105,6 +105,10 @@ From #{Blog.url}
     end
   end
 
+  before %r{/archives/[0-9]*/comment/d.*} do
+    redirect "/not_auth" if !admin?
+  end
+
   post '/archives/*/comment/r*' do
     article = Article.filter(:id => params[:splat][0].to_i).first
     not_found unless article

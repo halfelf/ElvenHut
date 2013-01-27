@@ -109,6 +109,10 @@ body {
 	background-image: url(/css/img/user.png);
 }
 
+#adminbar .import-icon {
+  background-image: url(/css/img/up_arrow.png);
+}
+
 #outline {
 	border-top: 5px solid #4b5258;
 }
@@ -410,6 +414,126 @@ article::after {
   padding: 0em;
 }
 
+#markdown-body table a:link {
+	color: #666;
+	font-weight: bold;
+	text-decoration:none;
+}
+#markdown-body table a:visited {
+	color: #999999;
+	font-weight:bold;
+	text-decoration:none;
+}
+#markdown-body table a:active,
+#markdown-body table a:hover {
+	color: #bd5a35;
+	text-decoration:underline;
+}
+#markdown-body table {
+	font-family:Arial, Helvetica, sans-serif;
+	color:#666;
+	font-size:14px;
+	text-shadow: 1px 1px 0px #fff;
+	background:#eaebec;
+	margin-top:20px;
+	margin-bottom: 20px;
+	border:#ccc 1px solid;
+	text-align: left;
+
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+
+	-moz-box-shadow: 0 1px 2px #d1d1d1;
+	-webkit-box-shadow: 0 1px 2px #d1d1d1;
+	box-shadow: 0 1px 2px #d1d1d1;
+	width: 100%;
+}
+#markdown-body table th {
+	padding:10px;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	border-left: 1px solid #ccc;
+	text-align: left;
+
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+
+#markdown-body table tr:first-child th:first-child {
+	-moz-border-radius-topleft:3px;
+	-webkit-border-top-left-radius:3px;
+	border-top-left-radius:3px;
+}
+#markdown-body table tr:first-child th:last-child {
+	-moz-border-radius-topright:3px;
+	-webkit-border-top-right-radius:3px;
+	border-top-right-radius:3px;
+}
+
+#markdown-body table input.checkbox {
+	height: 14px;
+}
+
+#markdown-body table tr {
+	text-align: center;
+	padding-left:20px;
+}
+#markdown-body table td:first-child {
+	text-align: left;
+	border-left: 0;
+}
+#markdown-body table td {
+	padding:10px;
+	border-top: 1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	border-left: 1px solid #ccc;
+	text-align: left;
+
+	background: #fafafa;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+}
+
+#markdown-body table tr:last-child td {
+	border-bottom:0;
+}
+#markdown-body table tr:last-child td:first-child {
+	-moz-border-radius-bottomleft:3px;
+	-webkit-border-bottom-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+#markdown-body table tr:last-child td:last-child {
+	-moz-border-radius-bottomright:3px;
+	-webkit-border-bottom-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+#markdown-body table tr:hover td {
+	background: #f2f2f2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
+}
+
+#markdown-body blockquote {
+background: #fff;
+border-left: 10px solid #6e6e6e;
+margin: 0 0 20px 20px;
+padding: 0.5em 10px 1px 20px;
+box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
+-webkit-transition: all .08s ease-in-out;
+}
+#markdown-body blockquote:before {
+color:#fff;
+content:open-quote;
+font-size:4em;
+line-height:.1em;
+margin-right:.25em;
+vertical-align:-.4em;
+}
+
 /* login in field */
 #login {
 	width: 30%;
@@ -427,6 +551,10 @@ article::after {
 	font-weight: 400;
 }
 
+#login input {
+	width: 300px;
+}
+
 input, textarea {
 	font-family: 'Source Sans Pro',Tahoma, Helvetica, Arial,sans-serif;
 	padding-left: 10px;
@@ -442,7 +570,50 @@ input, textarea {
 	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
 	-webkit-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
 	-webkit-transition: all .08s ease-in-out;
-	width: 300px;
+}
+
+input.file {
+	background-color: transparent;
+	border:none;
+	height: 18px;
+	box-shadow: none;
+	font-weight: normal;
+	font-size:13px;
+	-moz-box-shadow:none;
+	-webkit-box-shadow: none;
+	-webkit-transition: none;
+	padding-left: 0px;
+	margin-bottom: 0px;
+}
+
+#upload .button {
+	margin-left: 10px;
+}
+
+#file_browse input.file {
+	opacity:0;
+	padding-left: 0px;
+	width: 100px;
+	height: 36px;
+	cursor: pointer;
+	margin-left:-50px;
+}
+
+#file_browse label {
+	margin-left: 25px;
+}
+
+#file_browse {
+	font-family: 'Homenaje';
+	color: #f5efe0;
+	font-size: 18px;
+	font-weight: 600;
+	background-color: #4b5258;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 34px;
+	width: 100px;
+	float: left;
 }
 
 #delete_alert {
@@ -466,7 +637,7 @@ input, textarea {
 	margin: 10px 0px 0px 0px;
 }
 
-#login .button, #edit_post .button, .button{
+#login .button, #edit_post .button{
 	font-family: 'Homenaje';
 	margin-top: 10px;
 	margin-left: 213px;
@@ -475,8 +646,17 @@ input, textarea {
 	background-color: #4b5258;
 }
 
+ .button{
+	font-family: 'Homenaje';
+	margin-top: 10px;
+	color: #f5efe0;
+	width: 100px;
+	background-color: #4b5258;
+}
+
 #login .button:hover, #edit_post .button:hover, .button:hover {
 	background-color: #fa453c;
+	cursor: pointer;
 }
 
 /* post edit styles*/

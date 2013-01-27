@@ -14,7 +14,6 @@ module BasicMethods
     origin_date.strftime("%b %d, %Y")
   end
 
-
   class ::Hash
     def to_struct struct_name = nil
       Struct.new(struct_name, *keys).new(*values)
