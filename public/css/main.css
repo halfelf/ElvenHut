@@ -318,24 +318,41 @@ article aside ul li {
 	position: relative;
 }
 
-article aside ul li h4, post header h4 {
+article.list aside ul li h4{
+	font-weight: normal;
+		letter-spacing: 2px;
+}
+
+article aside ul li h4{
+	color: #6e6e6e;
+	letter-spacing: 1.5px;
+	font-weight:300;
+
+}
+
+post header h4 {
 	letter-spacing: 1.5px;
 	text-transform: uppercase;
 	font-size: 0.85em;
-	font-weight:normal;
+	font-weight:300;
 	color: #6e6e6e;
 	font-family: 'Source Sans Pro',Tahoma, Helvetica, Arial,sans-serif;
 }
 
-article aside ul li a:link, article aside ul li a:visited {
+article.list aside ul li a:link {
 	font-weight: normal;
+}
+
+article aside ul li a:link, article aside ul li a:visited {
+	font-weight: 300;
 	font-size: 0.85em;
 	color: #6e6e6e;
 }
 
 article aside ul li a:hover {
 	color: #4b5258;
-	font-weight: 400;
+	text-shadow: 0 2px 2px #4b5258;
+	font-weight: normal;
 }
 
 article aside p, article aside ul, article aside ol {
