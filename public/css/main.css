@@ -276,11 +276,37 @@ header[role="banner"] {
 	font-size: 1em;
 	line-height: 1.6;
 	margin-top: 15px;
+	margin-bottom: 30px;
 }
 
 #content article {
-	margin: 0 0 3em 0;
-	padding: 0 0 0 20%;
+	/*margin: 0 0 3em 0;*/
+	padding: 10px 0 20px 20%;
+}
+/*
+#post_info {
+	margin-left:5px;
+	padding-left: 15px;
+}
+
+#post_info:hover {
+
+	border-left: 5px solid #6e6e6e;
+		background-color:  rgba(0,0,0,0.05);
+}*/
+
+article.list {
+	border-left: 5px solid transparent;
+	/*border-left: 10px solid #6e6e6e;*/
+}
+
+article.list:hover {
+	border-left: 5px solid #6e6e6e;
+	background-color:  rgba(0,0,0,0.05);
+}
+
+article.list h2 {
+	font-size:1.5em;
 }
 
 article header, post header {
@@ -293,16 +319,16 @@ article aside ul li {
 }
 
 article aside ul li h4, post header h4 {
-	letter-spacing: 2px;
+	letter-spacing: 1.5px;
 	text-transform: uppercase;
 	font-size: 0.85em;
-	font-weight: 300;
+	font-weight:normal;
 	color: #6e6e6e;
 	font-family: 'Source Sans Pro',Tahoma, Helvetica, Arial,sans-serif;
 }
 
 article aside ul li a:link, article aside ul li a:visited {
-	font-weight: 300;
+	font-weight: normal;
 	font-size: 0.85em;
 	color: #6e6e6e;
 }
@@ -312,20 +338,55 @@ article aside ul li a:hover {
 	font-weight: 400;
 }
 
-article p, article ul, article ol {
+article aside p, article aside ul, article aside ol {
 	margin: 0 40px 1em 0;
 	font-size: 1.2em;
+}
+
+.archive_year {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.archive_year h2{
+	width: 100%;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.archive_year h2 span {
+	padding: 0 10px;
+	background: #111 url(/css/img/tile.jpg) 0 0 repeat;
+	z-index: 10;
+}
+
+.archive_year h2 span::before {
+	font-family: 'Source Sans Pro', Arial, sans-serif;
+position: absolute;
+z-index: -6;
+left: 0;
+color: #b3b0a8;
+font-weight: 300;
+letter-spacing: 3px;
+content: "..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................";
 }
 
 post {
 	margin-left: 40px;
 }
 
+post h2{
+	font-size: 2em;
+}
+
 post li {
 	font-size: 1.1em;
 }
 
-post p {
+post p, #markdown-body p {
 	margin: 0 20px 1em 0;
 	font-size: 1.1em;
 }
@@ -335,6 +396,22 @@ post #extend_info {
 	color: #4c4b4b;
 	-webkit-font-smoothing: subpixel-antialiased;
 	margin-top: 50px;
+}
+
+article #extend_info{
+	font-size: 1.1em;
+	color: #6e6e6e;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+
+article #extend_info a {
+	color: #6e6e6e;
+	font-weight: 300;
+}
+
+article #extend_info a:hover {
+	font-weight: normal;
+	text-shadow: 0 2px 2px #4b5258;
 }
 
 #extend_info .tag::before {
@@ -358,6 +435,10 @@ article::after {
 
 #content header a {
 	color: #4b5258;
+}
+
+#content header a:hover {
+	text-shadow: 0 2px 2px #4b5258;
 }
 
 ::selection {
@@ -703,20 +784,20 @@ h1 {
 
 h2 {
 	font-family: 'Homenaje', arial, sans-serif;
-	font-size: 2em;
+	font-size: 1.8em;
 	color: #4b5258;
 }
 
 h3 {
 	font-family: 'Homenaje', Tahoma, sans-serif;
-	font-size: 1.8em;
+	font-size: 1.3em;
 	color: #4b5258;
 }
 
 h4 {
 	font-family: 'Homenaje', Tahoma, sans-serif;
 	color: #4b5258;
-	font-size: 1.6em;
+	font-size: 1em;
 }
 
 p, li {

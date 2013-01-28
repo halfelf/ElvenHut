@@ -1,6 +1,7 @@
 <div id="markdown-body">
 <h1>Import archives from Wordpress</h1>
 <% if step == 1 then %>
+<h3>Export wordpress articles: wp-admin -> Tools -> Export -> Articles. Download the xml file and upload below :</h3>
 	<div id="upload">
 <form action="import_xml" method="post" enctype="multipart/form-data">
 	<input type="file" class="file" name="file"/>
@@ -10,6 +11,7 @@
 <%end %>
 
 <% if step == 2 then %>
+<h3>Select the articles you want to import :</h3>
 <form action="import_archives" method="post">
 <table cellspacing='0'> <!-- cellspacing='0' is important, must stay -->
 	<!-- Table Header -->
@@ -44,7 +46,7 @@
 	<!-- Table Body -->
 
 </table>
-	<input name="commit" type="submit" value="Upload" class="button"/>
+	<input name="commit" type="submit" value="Import" class="button"/>
 </form>
 <%end%>
 </div>

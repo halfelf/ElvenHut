@@ -36,9 +36,9 @@ class ElvenHut < Sinatra::Application
 
   get "/archives/" do
     begin
-      @all = Article.order("created_at DESC")
+      @all = Article.reverse_order(:created_at)
       @archive_path = settings.archive_path
-      erb :archives_index, :layout => :background
+      erb :archives_test, :layout => :background
     rescue => e
       database_clean
       redirect "/archives/"
