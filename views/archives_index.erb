@@ -1,23 +1,18 @@
+<% year = parse_year(Time.now) %>
 <% for article in @all %>
-  <article>
-  <header>
-  <h2>
-    <a href="/archives/<%= article.id %>"><%= article.title %></a>
-  </h2>
-  </header>
+<% article_year = parse_year(article.created_at) %>
+  <% if year != article_year then %>
+    <div class="archive_year">
+      <h2 class><span><%= article_year%></span></h2>
+      <% year = article_year %>
+    </div>
+  <% end %>
+
+  <article class="list">
   <aside>
   <ul>
     <li>
-    <h4><%= parse_date article.created_at %></h4>
-    </li>
-    <li>
-    <% article.tags.sort!{|x, y| y.quantity <=> x.quantity }.each_with_index do |tag, index| %>
-      <% if index == article.tags.length - 1 then %>
-        <a href="/tag/<%= tag.name%>" title="View all posts about <%=tag.name %>"><%= tag.name%></a>
-      <% else %>
-        <a href="/tag/<%= tag.name%>" title="View all posts about <%=tag.name %>"><%= tag.name + ", "%></a>
-      <% end %>
-    <% end %>
+    <h4><%= parse_month_day article.created_at %></h4>
     </li>
     <li>
     <% if !Setting.use_disqus then%>
@@ -34,8 +29,29 @@
     </li>
   </ul>
   </aside>
-  <div id="markdown-body">
-    <%=  markdown(File.read("#{@archive_path + article.id.to_s}.md")) %>
+  <div id="post_info">
+  <header>
+  <h2>
+    <a href="/archives/<%= article.id %>"><%= article.title %></a>
+  </h2>
+  </header>
+
+  <div id="extend_info">
+    Posted by <%=article.author%>
+    <span class="tag">
+      <% if article.tags.size == 0 then%>
+        No tags
+      <% else%>
+      <% article.tags.sort!{|x, y| y.quantity <=> x.quantity }.each_with_index do |tag, index| %>
+          <% if index == article.tags.length - 1 then %>
+            <a href="/tag/<%= tag.name%>" title="View all posts about <%=tag.name %>"><%= tag.name%></a>
+          <% else %>
+            <a href="/tag/<%= tag.name%>" title="View all posts about <%=tag.name %>"><%= tag.name%></a> ,
+          <% end %>
+      <% end %>
+      <% end %>
+    </span>
+  </div>
   </div>
   </article>
 <% end %>
