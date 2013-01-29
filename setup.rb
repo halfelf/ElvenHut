@@ -16,6 +16,8 @@ user = config["database"]["user"]
 host = config["database"]["host"]
 passwd = config["database"]["passwd"]
 
-sequel_command = "sequel -m db/migration #{adapter}://#{user}:#{passwd}@#{host}/#{database}"
+sequel_command = "sequel -m db/migration #{adapter}://db/#{database}.db"
+sequel_command = "sequel -m db/migration #{adapter}://#{user}:#{passwd}@#{host}/#{database}" if adapter == "mysql2"
 puts sequel_command
 system sequel_command
+puts "Sqlite database file: db/#{database}.db" if adapter == "sqlite"

@@ -11,3 +11,4 @@ gem 'redcarpet'
 gem 'rakismet', "~> 1.3.0"
 gem 'mail'
 gem 'nokogiri'
+gem 'sqlite3'
