@@ -4,7 +4,7 @@ class ElvenHut < Sinatra::Application
   
   def database_clean
     Article.order("created_at DESC").each do |article|
-      if !File.exist? settings.archive_path + article.id.to_s + ".md" then
+      if !File.exist? File.join(settings.archive_path, article.id.to_s << ".md")
         article.tags.each do |tag|
           tag.quantity -= 1
           tag.save
@@ -15,10 +15,10 @@ class ElvenHut < Sinatra::Application
   end
 
   def process_tag tags, article
-    tags.split(/,/).each do |item|
-      tag_name = item.strip! || item if item
+    tags.split(',').each do |item|
+      tag_name = item.strip || item if item
       tag = Tag.filter(:name => tag_name).first
-      if tag == nil then
+      if tag == nil
         tag = Tag.new :name => tag_name, :quantity => 1
       else
         tag.quantity += 1
@@ -29,7 +29,7 @@ class ElvenHut < Sinatra::Application
   end
 
   def write_mdfile filename, content
-    File.open("#{settings.archive_path + filename}.md", "w:utf-8") do |write_stream|
+    File.open(File.join(settings.archive_path, filename << '.md'), "w:utf-8") do |write_stream|
       write_stream.write content
     end
   end
@@ -51,10 +51,10 @@ class ElvenHut < Sinatra::Application
     erb :archives, :layout => :background
   end
 
-  get %r{/archives/([0-9]+)$} do
+  get %r{/archives/\d+$} do
     @article = Article.filter(:id => params[:captures].first).first
     not_found unless @article
-    @contentfilepath = "#{settings.archive_path + @article.id.to_s}.md"
+    @contentfilepath = File.join(settings.archive_path, @article.id.to_s << '.md'
     erb :post, :layout=>:background
   end
 
@@ -82,7 +82,7 @@ class ElvenHut < Sinatra::Application
     article = Article.filter(:id => params[:captures].first).first
     not_found unless article
     article.tags.map{|tag| tag.quantity -= 1; tag.save}.each{|tag| article.remove_tag tag}
-    md_filepath = settings.archive_path + article.id.to_s + ".md"
+    md_filepath = File.join(settings.archive_path, article.id.to_s << ".md")
     File.delete md_filepath if File.exist? md_filepath
     article.destroy
     redirect "/archives/"

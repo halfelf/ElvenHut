@@ -20,7 +20,7 @@ class ElvenHut < Sinatra::Application
   end
 
   post "/login" do
-    if params[:username] == Blog.admin_name && params[:password] == Blog.admin_passwd then
+    if params[:username] == Blog.admin_name && params[:password] == Blog.admin_passwd
       session[:username] = params[:username]
       session[:password] = params[:password]
       #response.set_cookie(Blog.admin_cookie_key, Blog.admin_cookie_value)

@@ -51,7 +51,7 @@ class ElvenHut < Sinatra::Application
       comment_id_map[comment[:id]] = current_comment
     end
     post[:comments].each do |comment|
-      if comment[:parent_id] != 0 then
+      if comment[:parent_id] != 0
         comment_id_map[comment[:id]].parent_id = comment_id_map[comment[:parent_id]].id
         comment_id_map[comment[:id]].save
       end
