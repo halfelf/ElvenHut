@@ -48,7 +48,7 @@ class ElvenHut < Sinatra::Application
 
     if Database.adapter == "mysql2"
       Sequel.connect(:adapter => Database.adapter, :user => Database.user, :host => Database.host, :database => Database.database, :password => Database.passwd.to_s, :encoding => 'utf8');
-    elsif Database.adapter == "sqlite"
+    elsif Database.adapter == "sqlite3"
       Sequel.connect(:adapter => "sqlite", :database => "db/#{Database.database}.db")
     end
 

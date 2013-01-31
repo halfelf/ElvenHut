@@ -1,5 +1,5 @@
 database:
-    adapter: mysql2 # or "sqlite"
+    adapter: mysql2 # or "sqlite3"
     user: root  # mysql2 required
     host: localhost # mysql2 required
     passwd: 123 # mysql2 required
