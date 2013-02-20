@@ -5,13 +5,12 @@
     <% if @article then %>
       <title><%= @article.title %> | <%= Blog.title %></title>
       <% if @article.tags.size != 0 then %>
-      <meta name="keywords" content="<% @article.tags.sort!{|x, y| y.quantity <=> x.quantity }.each_with_index do |tag, index| %><% if index == @article.tags.length - 1 then %><%= tag.name%><% else %><%= tag.name%> ,<% end %><% end %>" />
+        <meta name="keywords" content="<%= get_article_keywords @article %>">
       <% end%>
     <% else%>
-      <title><%= request.path_info[1..-1] %> | <%= Blog.title %></title>
+      <title><%= get_title %><%= Blog.title%></title>
     <%end%>
     <meta name="robots" content="all" />
-    <meta http-equiv="X-UA-Compatible" content="IE=100" />
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
     <link rel="stylesheet" href="/css/highlight/<%= Setting.code_style %>.css">
