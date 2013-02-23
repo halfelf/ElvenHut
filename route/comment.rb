@@ -103,7 +103,7 @@ From #{Blog.url}
     end
   end
 
-  before %r{/archives/[0-9]*/comment/d.*} do
+  before %r{/archives/\d+/comment/d.*} do
     redirect "/not_auth" if !admin?
   end
 
