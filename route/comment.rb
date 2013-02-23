@@ -7,8 +7,7 @@ class ElvenHut < Sinatra::Application
   def get_comment_list cur_comment_list, result_list
     cur_comment_list.each do |comment|
       result_list << comment
-      temp_comment_list = comment.children
-      get_comment_list temp_comment_list, result_list
+      get_comment_list comment.children, result_list
     end
   end
 
@@ -18,10 +17,10 @@ class ElvenHut < Sinatra::Application
   end
 
   def process_website url
-    if url =~ /https*:\/\// then
+    if url =~ /https*:\/\//
       url
     else
-      url = "http://" << url
+      "http://" << url
     end
   end
 
@@ -83,8 +82,8 @@ From #{Blog.url}
   end
 
   def mail_send_thread comment, url, title
-    opts = Hash.new
-    if comment.parent_id == -1 then
+    opts = {}
+    if comment.parent_id == -1
       opts[:to] = Blog.email
       opts[:username] = Blog.admin_name
     else
@@ -93,7 +92,7 @@ From #{Blog.url}
       opts[:username] = comment_parent.author
       opts[:comment_url] = "#{url}#comment#{comment_parent.id.to_s}"
     end
-    if is_email_available opts[:to] then
+    if is_email_available opts[:to]
       opts[:comment_content] = comment.comment
       opts[:title] = title
       opts[:url] = url
@@ -104,7 +103,7 @@ From #{Blog.url}
     end
   end
 
-  before %r{/archives/[0-9]*/comment/d.*} do
+  before %r{/archives/\d+/comment/d.*} do
     redirect "/not_auth" if !admin?
   end
 
@@ -113,8 +112,8 @@ From #{Blog.url}
     not_found unless article
     comment = Comment.new :author => params[:name], :comment => params[:message], :email => params[:email], :website => process_website(params[:website]), :parent_id => params[:splat][1].to_i, :updated_at => Time.now, :ip => request.ip
 
-    if Rakismet_Settings.use then
-      if !comment.spam? then
+    if Rakismet_Settings.use
+      if !comment.spam?
         comment.save
         article.add_comment(comment)
         Thread.new {mail_send_thread(comment, "http://#{Blog.url}/archives/#{article.id.to_s}", article.title)} if Setting.reply_notificate
@@ -132,7 +131,7 @@ From #{Blog.url}
     not_found unless article
     comment = Comment.filter(:id => params[:splat][1].to_i).first
     article.remove_comment comment
-    sub_comments = Array.new
+    sub_comments = []
     get_comment_list [comment], sub_comments
 
     sub_comments.each do |sub_comment|
