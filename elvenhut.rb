@@ -22,6 +22,7 @@ class ElvenHut < Sinatra::Application
   set :view_path => File.join(root,'views')
   set :public_path => File.join(root,'public')
   set :archive_path => File.join(root,'views','archives')
+  set :port, 80
 
   layout 'background'
 
