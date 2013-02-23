@@ -54,7 +54,7 @@ class ElvenHut < Sinatra::Application
   get %r{/archives/\d+$} do
     @article = Article.filter(:id => params[:captures].first).first
     not_found unless @article
-    @contentfilepath = File.join(settings.archive_path, @article.id.to_s << '.md'
+    @contentfilepath = File.join(settings.archive_path, @article.id.to_s << '.md')
     erb :post, :layout=>:background
   end
 
