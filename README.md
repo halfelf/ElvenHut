@@ -27,3 +27,7 @@ A blog constructor based on Sinatra for building tech posts site.
 * Feb 2th, 2013: Import archives from wordpress xml.
 
 ---
+
+#Ruby Version#
+* 1.9.3
+* 2.0.0
