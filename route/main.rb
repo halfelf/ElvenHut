@@ -11,7 +11,7 @@ class ElvenHut < Sinatra::Application
   end
 
   not_found do
-    markdown File.read("#{settings.public_path}not_found.md"), :layout => :background
+    markdown File.read(File.join(settings.public_path,"not_found.md")), :layout => :background
   end
 
 end
