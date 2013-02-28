@@ -1,6 +1,7 @@
 #source 'http://rubygems.org'
 source "http://ruby.taobao.org"
 
+require 'yaml'
 username = ENV['USER']  #linux/unix only, use "ENV['USERNAME']" on windows
 if File.exist?("config/config_#{username}.yaml")
   config = YAML.load_file "config/config_#{username}.yaml"

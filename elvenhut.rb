@@ -48,7 +48,6 @@ class ElvenHut < Sinatra::Application
     Setting = config_struct["basic_setting"].to_struct
     Rakismet_Settings = config_struct["rakismet"].to_struct
 
-<<<<<<< HEAD
     if Database.adapter == "mysql2"
       Sequel.connect(:adapter => Database.adapter, :user => Database.user, :host => Database.host, :database => Database.database, :password => Database.passwd.to_s, :encoding => 'utf8');
     elsif Database.adapter == "sqlite3"
@@ -56,10 +55,6 @@ class ElvenHut < Sinatra::Application
     end
 
     if Rakismet_Settings.use then
-=======
-    Sequel.connect(:adapter => Database.adapter, :user => Database.user, :host => Database.host, :database => Database.database, :password => Database.passwd.to_s, :encoding => 'utf8');
-    if Rakismet_Settings.use
->>>>>>> 1.0
       Rakismet.key = Rakismet_Settings.key
       Rakismet.url = Rakismet_Settings.url
       Rakismet.host = Rakismet_Settings.host
