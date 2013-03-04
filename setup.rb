@@ -10,11 +10,11 @@ else
   config = YAML.load_file "config/config.yaml"
 end
 
-adapter = config["database"]["adapter"]
+adapter  = config["database"]["adapter"]
 database = config["database"]["database"]
-user = config["database"]["user"]
-host = config["database"]["host"]
-passwd = config["database"]["passwd"]
+user     = config["database"]["user"]
+host     = config["database"]["host"]
+passwd   = config["database"]["passwd"]
 
 sequel_command = "sequel -m db/migration sqlite://db/#{database}.db"
 sequel_command = "sequel -m db/migration #{adapter}://#{user}:#{passwd}@#{host}/#{database}" if adapter == "mysql2"

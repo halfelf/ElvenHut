@@ -97,8 +97,8 @@ class ElvenHut < Sinatra::Application
   post "/archives/:article_id/edit" do
     article = Article.filter(:id => params[:article_id]).first
     not_found unless article
-    article.title = params[:title]
-    article.author = params[:author]
+    article.title     = params[:title]
+    article.author    = params[:author]
     article.update_at = Time.new
     article.save
 

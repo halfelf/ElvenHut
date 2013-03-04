@@ -9,18 +9,18 @@ require "mail"
 require "fileutils"
 
 Sinatra::Base.set :markdown, 
-                  :autolink => true,
-                  :fenced_code_blocks => true, 
-                  :strikethrough => true,
-                  :superscript => true,
-                  :layout_engine => :erb
+                  :autolink           => true,
+                  :fenced_code_blocks => true,
+                  :strikethrough      => true,
+                  :superscript        => true,
+                  :layout_engine      => :erb
 class ElvenHut < Sinatra::Application
 
   Tilt.register Tilt::RedcarpetTemplate::Redcarpet2, 'markdown', 'mkd', 'md'
 
   set :root, File.dirname(__FILE__)
-  set :view_path => File.join(root,'views')
-  set :public_path => File.join(root,'public')
+  set :view_path    => File.join(root,'views')
+  set :public_path  => File.join(root,'public')
   set :archive_path => File.join(root,'views','archives')
   set :port, 80
 
@@ -42,10 +42,10 @@ class ElvenHut < Sinatra::Application
     config = YAML.load_file config_file
     config_struct = config.to_struct
 
-    Database = config_struct["database"].to_struct
-    Blog = config_struct["blog"].to_struct
-    Social = config_struct["social"].to_struct
-    Setting = config_struct["basic_setting"].to_struct
+    Database          = config_struct["database"].to_struct
+    Blog              = config_struct["blog"].to_struct
+    Social            = config_struct["social"].to_struct
+    Setting           = config_struct["basic_setting"].to_struct
     Rakismet_Settings = config_struct["rakismet"].to_struct
 
     if Database.adapter == "mysql2"
@@ -55,8 +55,8 @@ class ElvenHut < Sinatra::Application
     end
 
     if Rakismet_Settings.use then
-      Rakismet.key = Rakismet_Settings.key
-      Rakismet.url = Rakismet_Settings.url
+      Rakismet.key  = Rakismet_Settings.key
+      Rakismet.url  = Rakismet_Settings.url
       Rakismet.host = Rakismet_Settings.host
     end
   end

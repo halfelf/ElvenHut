@@ -7,26 +7,26 @@ class ElvenHut < Sinatra::Application
   wordpress_archives = nil
 
   def extract_wordpressxml xmlfile
-    parser = Nokogiri::XML(open(xmlfile))
+    parser   = Nokogiri::XML(open(xmlfile))
     archives = Array.new
     parser.xpath("//item").each do |item|
-      post = Hash.new
-      post[:title] = item.xpath("title").inner_text
-      post[:author] = item.xpath("dc:creator").first.inner_text
+      post             = Hash.new
+      post[:title]     = item.xpath("title").inner_text
+      post[:author]    = item.xpath("dc:creator").first.inner_text
       post[:create_at] = Time.parse(item.xpath("wp:post_date").inner_text)
-      post[:content] = item.xpath("content:encoded").inner_text
-      post[:tags] = item.xpath("category").collect(&:inner_text).join(",")
-      comments = Array.new
+      post[:content]   = item.xpath("content:encoded").inner_text
+      post[:tags]      = item.xpath("category").collect(&:inner_text).join(",")
+      comments         = Array.new
       item.xpath("wp:comment").each do |comment|
-        comment_struct = Hash.new
-        comment_struct[:id] = comment.xpath("wp:comment_id").inner_text.to_i
+        comment_struct             = Hash.new
+        comment_struct[:id]        = comment.xpath("wp:comment_id").inner_text.to_i
         comment_struct[:parent_id] = comment.xpath("wp:comment_parent").inner_text.to_i
-        comment_struct[:author] = comment.xpath("wp:comment_author").inner_text
-        comment_struct[:email] = comment.xpath("wp:comment_author_email").inner_text
-        comment_struct[:url] = comment.xpath("wp:comment_author_url").inner_text
+        comment_struct[:author]    = comment.xpath("wp:comment_author").inner_text
+        comment_struct[:email]     = comment.xpath("wp:comment_author_email").inner_text
+        comment_struct[:url]       = comment.xpath("wp:comment_author_url").inner_text
         comment_struct[:create_at] = Time.parse(comment.xpath("wp:comment_date").inner_text)
-        comment_struct[:comment] = comment.xpath("wp:comment_content").inner_text
-        comment_struct[:ip] = comment.xpath("wp:comment_author_IP").inner_text
+        comment_struct[:comment]   = comment.xpath("wp:comment_content").inner_text
+        comment_struct[:ip]        = comment.xpath("wp:comment_author_IP").inner_text
         comments << comment_struct
       end
       post[:comments] = comments
