@@ -12,9 +12,9 @@
 		<h4><%= parse_date article.created_at %></h4>
 	</header>
 	<div id="markdown-body">
-	<%= markdown(File.read("#{settings.archive_path}#{article.id.to_s}.md"))%>
+	<%= markdown(File.read(File.join(settings.archive_path, article.id.to_s << ".md")))%>
 	</div>
-	<div id="extend_info">
+	<div class="extend_info">
 		Posted by <%=article.author%>
 		<span class="tag">
 			<% if article.tags.size == 0 then%>

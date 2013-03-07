@@ -8,7 +8,7 @@
 	<div id="markdown-body">
 	<%= markdown(File.read(@contentfilepath))%>
 	</div>
-	<div id="extend_info">
+	<div class="extend_info">
 		Posted by <%=@article.author%>
 		<span class="tag">
 			<% if @article.tags.size == 0 then%>
