@@ -36,7 +36,7 @@
                 <div id="deleteForm_<%= comment.id%>" class="more">
                   <form action="<%= url + "/comment/d#{comment.id}"%>" method="post" name="delete_comment">
                     <fieldset class="delete-verify">
-                      <label"verify">Delete this comment ?</label>
+                      <label>Delete this comment ?</label>
                       <input type="submit" value="Delete Comment" class="delete" />
                       <input value="Cancel" class="cancel" type="button" onclick="hideHide('deleteForm_<%= comment.id%>'); return false;" />
                     </fieldset>
@@ -46,20 +46,20 @@
                   <form action="<%= url + "/comment/r#{comment.id}"%>" method="post" name="comment"> 
                     <fieldset class="user-details">	
 
-                      <label"name">Name:</label>
+                      <label>Name:</label>
                       <input type="text" name="name" value="" placeholder="Required" /> 
 
-                      <label"email">Email:</label> 
+                      <label>Email:</label> 
                       <input type="email" name="email" value="" placeholder="Optional" /> 
 
-                      <label"website">Website:</label> 
+                      <label>Website:</label> 
                       <input type="url" name="website" value="" placeholder="Optional" /> 
 
                     </fieldset><!--end user-details-->
 
                     <fieldset class="user-message">
 
-                      <label"message">Your Message:</label> 
+                      <label>Your Message:</label> 
                       <textarea name="message" rows="0" cols="0"></textarea> 
 
                       <input type="submit" value="Submit Message" name="submit" class="submit" />		
@@ -100,20 +100,20 @@
 
       <fieldset class="user-details">	
 
-        <label"name">Name:</label>
+        <label>Name:</label>
         <input type="text" name="name" value="" placeholder="Required" /> 
 
-        <label"email">Email:</label> 
+        <label>Email:</label> 
         <input type="email" name="email" value="" placeholder="Optional" /> 
 
-        <label"website">Website:</label> 
+        <label>Website:</label> 
         <input type="url" name="website" value="" placeholder="Optional" /> 
 
       </fieldset><!--end user-details-->
 
       <fieldset class="user-message">
 
-        <label"message">Your Message:</label> 
+        <label>Your Message:</label> 
         <textarea name="message" rows="0" cols="0"></textarea> 
 
         <input type="submit" value="Submit Message" name="submit" class="submit" />		
