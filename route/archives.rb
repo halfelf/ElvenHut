@@ -37,7 +37,6 @@ class ElvenHut < Sinatra::Application
   get "/archives/" do
     begin
       @all = Article.reverse_order(:created_at)
-      @archive_path = settings.archive_path
       erb :archives_index, :layout => :background
     rescue => e
       database_clean
@@ -47,7 +46,6 @@ class ElvenHut < Sinatra::Application
 
   get "/tag/:name" do
     @all = Tag.filter(:name => params[:name]).first.articles
-    @archive_path = settings.archive_path
     erb :archives, :layout => :background
   end
 

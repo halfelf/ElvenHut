@@ -35,7 +35,7 @@
   </ul>
   </aside>
   <div id="markdown-body">
-    <%=  markdown(File.read("#{@archive_path + article.id.to_s}.md")) %>
+    <%=  markdown(File.read(File.join(settings.archive_path, article.id.to_s << ".md"))) %>
   </div>
   </article>
 <% end %>
