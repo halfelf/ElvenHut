@@ -35,8 +35,8 @@
 
                 <div id="deleteForm_<%= comment.id%>" class="more">
                   <form action="<%= url + "/comment/d#{comment.id}"%>" method="post" name="delete_comment">
-                    <fieldset id="delete-verify">
-                      <label for"verify">Delete this comment ?</label>
+                    <fieldset class="delete-verify">
+                      <label"verify">Delete this comment ?</label>
                       <input type="submit" value="Delete Comment" class="delete" />
                       <input value="Cancel" class="cancel" type="button" onclick="hideHide('deleteForm_<%= comment.id%>'); return false;" />
                     </fieldset>
@@ -44,22 +44,22 @@
                 </div>
                 <div id="commentForm_<%= comment.id%>" class="more">
                   <form action="<%= url + "/comment/r#{comment.id}"%>" method="post" name="comment"> 
-                    <fieldset id="user-details">	
+                    <fieldset class="user-details">	
 
-                      <label for="name">Name:</label>
+                      <label"name">Name:</label>
                       <input type="text" name="name" value="" placeholder="Required" /> 
 
-                      <label for="email">Email:</label> 
+                      <label"email">Email:</label> 
                       <input type="email" name="email" value="" placeholder="Optional" /> 
 
-                      <label for="website">Website:</label> 
+                      <label"website">Website:</label> 
                       <input type="url" name="website" value="" placeholder="Optional" /> 
 
                     </fieldset><!--end user-details-->
 
-                    <fieldset id="user-message">
+                    <fieldset class="user-message">
 
-                      <label for="message">Your Message:</label> 
+                      <label"message">Your Message:</label> 
                       <textarea name="message" rows="0" cols="0"></textarea> 
 
                       <input type="submit" value="Submit Message" name="submit" class="submit" />		
@@ -98,22 +98,22 @@
 
       <h2>Get In Touch With Us ...</h2>
 
-      <fieldset id="user-details">	
+      <fieldset class="user-details">	
 
-        <label for="name">Name:</label>
+        <label"name">Name:</label>
         <input type="text" name="name" value="" placeholder="Required" /> 
 
-        <label for="email">Email:</label> 
+        <label"email">Email:</label> 
         <input type="email" name="email" value="" placeholder="Optional" /> 
 
-        <label for="website">Website:</label> 
+        <label"website">Website:</label> 
         <input type="url" name="website" value="" placeholder="Optional" /> 
 
       </fieldset><!--end user-details-->
 
-      <fieldset id="user-message">
+      <fieldset class="user-message">
 
-        <label for="message">Your Message:</label> 
+        <label"message">Your Message:</label> 
         <textarea name="message" rows="0" cols="0"></textarea> 
 
         <input type="submit" value="Submit Message" name="submit" class="submit" />		

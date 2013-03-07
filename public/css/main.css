@@ -408,30 +408,30 @@ post p, #markdown-body p {
 	font-size: 1.1em;
 }
 
-post #extend_info {
+post .extend_info {
 	font-size: 1.1em;
 	color: #4c4b4b;
 	-webkit-font-smoothing: subpixel-antialiased;
 	margin-top: 50px;
 }
 
-article #extend_info{
+article .extend_info{
 	font-size: 1.1em;
 	color: #6e6e6e;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
-article #extend_info a {
+article .extend_info a {
 	color: #6e6e6e;
 	font-weight: 300;
 }
 
-article #extend_info a:hover {
+article .extend_info a:hover {
 	font-weight: normal;
 	text-shadow: 0 2px 2px #4b5258;
 }
 
-#extend_info .tag::before {
+.extend_info .tag::before {
 	content: "• ";
 	padding: 0 .4em 0 .2em;
 	display: inline-block;
@@ -868,7 +868,6 @@ pre{
 }
 
 embed {
-	height: 0px;
 	display: block;
 	line-height: 0px;
 }

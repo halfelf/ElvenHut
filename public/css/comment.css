@@ -72,13 +72,13 @@ comment form {
 
 comment fieldset { border: none; }
 
-#user-details { 
+.user-details { 
   float: left;
   width: 25%; 
   margin-left: 5px;
 }
 
-#user-message { 
+.user-message { 
   float: right;
   width: 65%;
   display: block;

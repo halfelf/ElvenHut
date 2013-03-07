@@ -4,5 +4,6 @@ views/archives/*.md
 **/*.swp
 *.swp
 *~
+*.db
 config/config_*.yaml
 vendor/

@@ -22,6 +22,17 @@ module BasicMethods
     origin_date.strftime("%d %B")
   end
 
+  def get_title
+    title = request.path_info.gsub(/\//, ' ').strip
+    title << " | " if title != ""
+  end
+
+  def get_article_keywords article
+    tag_names = []
+    article.tags.sort!{|x, y| y.quantity <=> x.quantity }.each {|tag| tag_names << tag.name}
+    tag_names.join(',')
+  end
+
   class ::Hash
     def to_struct struct_name = nil
       Struct.new(struct_name, *keys).new(*values)
