@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'sequel'
-require 'mysql2'
 
 Sequel.migration do
   transaction

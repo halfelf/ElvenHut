@@ -1,4 +1,4 @@
-# encoding: utf-8
+#encoding: utf-8
 
 class ElvenHut < Sinatra::Application
   
@@ -51,8 +51,8 @@ class ElvenHut < Sinatra::Application
     erb :archives, :layout => :background
   end
 
-  get %r{/archives/\d+$} do
-    @article = Article.filter(:id => params[:captures].first).first
+  get "/archives/:article_id" do
+    @article = Article.filter(:id => params[:article_id]).first
     not_found unless @article
     @contentfilepath = File.join(settings.archive_path, @article.id.to_s << '.md')
     erb :post, :layout=>:background
@@ -72,14 +72,14 @@ class ElvenHut < Sinatra::Application
     redirect "/archives/#{article.id}"
   end
 
-  get %r{/archives/([0-9]+)/delete$} do
-    article = Article.filter(:id => params[:captures].first).first
+  get "/archives/:article_id/delete" do
+    article = Article.filter(:id => params[:article_id]).first
     not_found unless article
     erb :delete_post, :layout => :background, :locals=>{:article=>article}
   end
 
-  post %r{/archives/([0-9]+)/delete$} do
-    article = Article.filter(:id => params[:captures].first).first
+  post "/archives/:article_id/delete" do
+    article = Article.filter(:id => params[:article_id]).first
     not_found unless article
     article.tags.map{|tag| tag.quantity -= 1; tag.save}.each{|tag| article.remove_tag tag}
     md_filepath = File.join(settings.archive_path, article.id.to_s << ".md")
@@ -97,8 +97,8 @@ class ElvenHut < Sinatra::Application
   post "/archives/:article_id/edit" do
     article = Article.filter(:id => params[:article_id]).first
     not_found unless article
-    article.title = params[:title]
-    article.author = params[:author]
+    article.title     = params[:title]
+    article.author    = params[:author]
     article.update_at = Time.new
     article.save
 

@@ -2,9 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-Hans" lang="zh-Hans">
   <head>
     <meta charset="UTF-8" />
-    <title><%= Blog.title %></title>
+    <% if @article then %>
+      <title><%= @article.title %> | <%= Blog.title %></title>
+      <% if @article.tags.size != 0 then %>
+        <meta name="keywords" content="<%= get_article_keywords @article %>">
+      <% end%>
+    <% else%>
+      <title><%= get_title %><%= Blog.title%></title>
+    <%end%>
     <meta name="robots" content="all" />
-    <meta http-equiv="X-UA-Compatible" content="IE=100" />
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
     <link rel="stylesheet" href="/css/highlight/<%= Setting.code_style %>.css">
@@ -74,7 +80,6 @@
   				<li class="rss">
   					<a href="/feed">RSS Feed</a>
   				</li>
-  			</div>
   		</div>
   	</footer>
   	<!-- /extra -->

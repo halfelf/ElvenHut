@@ -1,8 +1,8 @@
 database:
-    adapter: mysql2
-    user: root
-    host: localhost
-    passwd: 123
+    adapter: mysql2 # or "sqlite3"
+    user: root  # mysql2 required
+    host: localhost # mysql2 required
+    passwd: 123 # mysql2 required
     database: elvenhut_database
 blog:
     title: ElvenHut | A blog engine for personal using

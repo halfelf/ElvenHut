@@ -84,19 +84,19 @@ From #{Blog.url}
   def mail_send_thread comment, url, title
     opts = {}
     if comment.parent_id == -1
-      opts[:to] = Blog.email
+      opts[:to]       = Blog.email
       opts[:username] = Blog.admin_name
     else
-      comment_parent = Comment.filter(:id => comment.parent_id).first
-      opts[:to] = comment_parent.email
+      comment_parent  = Comment.filter(:id => comment.parent_id).first
+      opts[:to]       = comment_parent.email
       opts[:username] = comment_parent.author
       opts[:comment_url] = "#{url}#comment#{comment_parent.id.to_s}"
     end
     if is_email_available opts[:to]
-      opts[:comment_content] = comment.comment
-      opts[:title] = title
-      opts[:url] = url
-      opts[:target_username] = comment.author
+      opts[:comment_content]  = comment.comment
+      opts[:title]            = title
+      opts[:url]              = url
+      opts[:target_username]  = comment.author
       send_email opts
     else
       puts "invalid email address : \"#{opts[:to]}\""
