@@ -10,7 +10,7 @@ html, body {
 
 body {
 	background: rgba(78, 68, 60, 0.75) url(/css/img/tile.jpg);
-	font-family: 'Source Sans Pro', Arial,sans-serif;
+	font-family: 'Source Sans Pro', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial,sans-serif;
 	/*font-family: "BigNoodleTitling", Helvetica, Arial, sans-serif;*/
 	line-height: 1.5;
 	min-width: 1280px;
@@ -216,11 +216,11 @@ header[role="banner"] {
 }
 
 #logo h1 {
-	font: 4.6em/0.82 "NewPressEroded",Tahoma，Helvetica,Calibri,Arial,sans-serif;
+	font: 4.6em/0.82 "NewPressEroded", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei",Arial,sans-serif;
 }
 
 #logo h1 em {
-	font: 0.5em "BigNoodleTitling",Tahoma，Helvetica, Arial, sans-serif;
+	font: 0.5em "BigNoodleTitling", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 	color: #6e6e6e;
 	margin-left: 30px;
 }
@@ -246,7 +246,7 @@ header[role="banner"] {
 }
 
 #nav li a {
-	font-family: "BigNoodleTitling", Tahoma, Helvetica, Arial, sans-serif;
+	font-family: "BigNoodleTitling", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 	font-size: 0.9em;
 	display: block;
   	float: left;
@@ -336,7 +336,7 @@ post header h4 {
 	font-size: 0.85em;
 	font-weight:300;
 	color: #6e6e6e;
-	font-family: 'Source Sans Pro',Tahoma, Helvetica, Arial,sans-serif;
+	font-family: 'Source Sans Pro', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 }
 
 article.list aside ul li a:link {
@@ -381,7 +381,7 @@ article aside p, article aside ul, article aside ol {
 }
 
 .archive_year h2 span::before {
-	font-family: 'Source Sans Pro', Arial, sans-serif;
+	font-family: 'Source Sans Pro', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 position: absolute;
 z-index: -6;
 left: 0;
@@ -473,7 +473,7 @@ article::after {
 
 #markdown-body h1 {
   margin: 20px 0 10px;
-	font-family: 'Homenaje', arial, sans-serif;
+	font-family: 'Homenaje', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", arial, sans-serif;
   font-size: 1.7em;
   font-weight: normal;
 }
@@ -528,7 +528,7 @@ article::after {
 	text-decoration:underline;
 }
 #markdown-body table {
-	font-family:Arial, Helvetica, sans-serif;
+	font-family: 'Source Sans Pro', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 	color:#666;
 	font-size:14px;
 	text-shadow: 1px 1px 0px #fff;
@@ -645,7 +645,7 @@ vertical-align:-.4em;
 }
 
 #login p {
-	font-family: 'Homenaje';
+	font-family: 'Homenaje', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 	font-weight: 400;
 }
 
@@ -654,7 +654,7 @@ vertical-align:-.4em;
 }
 
 input, textarea {
-	font-family: 'Source Sans Pro',Tahoma, Helvetica, Arial,sans-serif;
+	font-family: 'Source Sans Pro', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial,sans-serif;
 	padding-left: 10px;
 	margin-bottom: 10px;
 	height: 36px;
@@ -702,7 +702,7 @@ input.file {
 }
 
 #file_browse {
-	font-family: 'Homenaje';
+	font-family: 'Homenaje', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 	color: #f5efe0;
 	font-size: 18px;
 	font-weight: 600;
@@ -736,7 +736,7 @@ input.file {
 }
 
 #login .button, #edit_post .button{
-	font-family: 'Homenaje';
+	font-family: 'Homenaje', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 	margin-top: 10px;
 	margin-left: 213px;
 	color: #f5efe0;
@@ -745,7 +745,7 @@ input.file {
 }
 
  .button{
-	font-family: 'Homenaje';
+	font-family: 'Homenaje', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 	margin-top: 10px;
 	color: #f5efe0;
 	width: 100px;
@@ -794,25 +794,25 @@ input.file {
 	h1: site title. h2: article tile. h3: paragraph title*/
 
 h1 {
-	font: 4.6em/0.82 "NewPressEroded",arial, sans-serif;
+	font: 4.6em/0.82 "NewPressEroded", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", arial, sans-serif;
 ;
 	color: #4b5258;
 }
 
 h2 {
-	font-family: 'Homenaje', arial, sans-serif;
+	font-family: 'Homenaje', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", arial, sans-serif;
 	font-size: 1.8em;
 	color: #4b5258;
 }
 
 h3 {
-	font-family: 'Homenaje', Tahoma, sans-serif;
+	font-family: 'Homenaje', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", arial, sans-serif;
 	font-size: 1.3em;
 	color: #4b5258;
 }
 
 h4 {
-	font-family: 'Homenaje', Tahoma, sans-serif;
+	font-family: 'Homenaje', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", arial, sans-serif;
 	color: #4b5258;
 	font-size: 1em;
 }
@@ -845,7 +845,7 @@ pre{
   white-space: -o-pre-wrap;    /* Opera 7 */
   word-wrap: break-all;       /* Internet Explorer 5.5+ */
 	font-size: 16px;
-	font-family: Consolas, "Liberation Mono", Courier, monospace;
+	font-family: Consolas, "Liberation Mono", Courier, monospace, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
   border: 1px solid #fff;
 	box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
 	-moz-box-shadow: inset 0 1px 4px rgba(125, 125, 125, .65);
@@ -863,7 +863,7 @@ code {
 
 pre{
 	font-size: 16px;
-	font-family: Consolas, "Liberation Mono", Courier, monospace;
+	font-family: Consolas, "Liberation Mono", Courier, monospace,"Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
   overflow-x: scroll;
 }
 
