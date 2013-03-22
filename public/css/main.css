@@ -512,6 +512,14 @@ article::after {
   padding: 0em;
 }
 
+#markdown-body hr {
+  background: transparent url("/css/img/hr.png") repeat-x 0 0;
+  border: 0 none;
+  color: #ccc;
+  height: 4px;
+  padding: 0;
+}
+
 #markdown-body table a:link {
 	color: #666;
 	font-weight: bold;
@@ -856,7 +864,7 @@ pre{
 }
 
 code {
-  
+  font-family: Consolas, "Liberation Mono", Courier, 'Source Sans Pro', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
   background: #fff;
 /*  border-radius: 3px;*/
 }
@@ -864,7 +872,6 @@ code {
 pre{
 	font-size: 16px;
 	font-family: Consolas, "Liberation Mono", Courier, monospace,"Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
-  overflow-x: scroll;
 }
 
 embed {
